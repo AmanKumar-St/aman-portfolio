@@ -19,6 +19,14 @@
 
 html {
   scroll-behavior: smooth;
+  /* Whole page advances one section per scroll wheel. Switch to `proximity`
+     for a gentler feel that only snaps when you're already near a section. */
+  scroll-snap-type: y mandatory;
+}
+
+/* Each section is a snap point at the top of the viewport. */
+[data-section] {
+  scroll-snap-align: start;
 }
 
 body {
@@ -44,4 +52,37 @@ body {
 ::selection {
   background: var(--color-amber);
   color: var(--color-dark);
+}
+
+/* Radial nav: rotating option buttons on the circular arc. */
+.radial-nav-item {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+/* Active option glow. */
+.nav-glow {
+  text-shadow: 0 0 12px rgba(212, 168, 83, 0.7);
+}
+
+/* One-time slide-out from the badge on mount. */
+@keyframes navSlideOut {
+  from {
+    transform: translate(var(--sx, 0), var(--sy, 0));
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.nav-enter {
+  animation: navSlideOut 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radial-nav-item {
+    transition: none;
+  }
+  .nav-enter {
+    animation: none;
+  }
 }

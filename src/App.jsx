@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense } from 'react';
 import Navbar from './components/ui/Navbar';
+import HamburgerNav from './components/ui/hamburger-nav';
 import Loader from './components/ui/Loader';
 import Footer from './components/ui/Footer';
 import Hero from './components/sections/Hero';
@@ -20,6 +21,7 @@ function App() {
       {loading && <Loader onComplete={() => setLoading(false)} />}
 
       <Navbar section={section} />
+      <HamburgerNav section={section} />
 
       <Suspense fallback={null}>
         <SceneCanvas
