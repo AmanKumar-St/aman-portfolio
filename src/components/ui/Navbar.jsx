@@ -22,8 +22,8 @@ const angleOpacity = (offsetRad, upFade, downFull, downFade) => {
 const CONFIG = {
   radius: 80,
   anchorAngle: 0, // degrees; 0 = east (right of the badge)
-  badgeX: 60, // px, left
-  badgeY: 60, // px, top
+  badgeX: 24, // px, left
+  badgeY: 24, // px, top
   upFade: 0.5,
   downFull: 0.3,
   downFade: 0.5,
