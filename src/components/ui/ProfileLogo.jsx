@@ -24,7 +24,7 @@ export default function ProfileLogo({ section }) {
     <nav aria-label="Section navigation">
       {/* Static profile logo (the arc is anchored on it). Always visible. */}
       <div
-        className="fixed z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md"
+        className="fixed z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md shadow-lg"
         style={{ left: 24, top: 24 }}
       >
         AK

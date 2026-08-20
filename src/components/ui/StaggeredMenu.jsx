@@ -264,7 +264,7 @@ export const StaggeredMenu = ({
         </div>
 
         <header
-          className="staggered-menu-header fixed right-6 top-4 bg-transparent pointer-events-none z-20"
+          className="staggered-menu-header fixed right-6 top-6 bg-transparent pointer-events-none z-50"
           aria-label="Main navigation header"
         >
           {/* Custom user button for toggle */}
@@ -379,7 +379,7 @@ export const StaggeredMenu = ({
   pointer-events: none;
 }
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
-.sm-scope .staggered-menu-header { position: absolute; pointer-events: none; z-index: 20; }
+.sm-scope .staggered-menu-header { position: absolute; pointer-events: none; z-index: 50; }
 .sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; pointer-events: auto; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
 .sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 5; }
