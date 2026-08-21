@@ -1,6 +1,6 @@
 import StaggeredMenu from './StaggeredMenu';
 import { NAV_ITEMS } from '../../constants/nav';
-import { triggerSectionTransition } from './TransitionOverlay';
+import { triggerSectionTransition } from '../../utils/navigation';
 
 export default function HamburgerNav({ section }) {
   const goTo = (target, label) => {

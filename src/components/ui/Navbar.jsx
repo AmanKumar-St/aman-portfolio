@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { NAV_ITEMS } from '../../constants/nav';
-import { triggerSectionTransition } from './TransitionOverlay';
+import { triggerSectionTransition } from '../../utils/navigation';
 
 const WHEEL_COOLDOWN = 120;
 
