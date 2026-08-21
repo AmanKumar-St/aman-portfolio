@@ -47,28 +47,31 @@ export default function TransitionOverlay() {
   // References for Transition Elements
   const containerRef = useRef(null);
 
-  // Transition #2 (WebGL Noise)
+  // Transition #1 (Home - #F2b759)
+  const t1OverlayRef = useRef(null);
+
+  // Transition #2 (WebGL Noise - #f2efe7)
   const webglCanvasRef = useRef(null);
   const webglSceneRef = useRef(null);
 
-  // Transition #3 (SVG Morph)
+  // Transition #3 (SVG Morph - #8b004a)
   const svgMorphContainerRef = useRef(null);
   const svgMorphPathRef = useRef(null);
 
-  // Transition #4 (Bloom Title Overlay)
+  // Transition #4 (Bloom Title Overlay - #00a19b)
   const titleOverlayRef = useRef(null);
   const titleTextRef = useRef(null);
   const [destinationTitle, setDestinationTitle] = useState('');
 
-  // Transition #5 (Draw SVG Spiral)
+  // Transition #5 (Draw SVG Spiral - Same #D4A853)
   const svgDrawContainerRef = useRef(null);
   const svgDrawPathRef = useRef(null);
 
-  // Transition #6 (Dual Curtain Lift)
+  // Transition #6 (Dual Curtain Lift - #C87740)
   const curtainOverlayRef = useRef(null);
 
   useEffect(() => {
-    // Initialize WebGL Scene for Transition #2
+    // Initialize WebGL Scene for Transition #2 with #f2efe7 background color
     if (webglCanvasRef.current) {
       const canvas = webglCanvasRef.current;
       const width = window.innerWidth;
@@ -89,9 +92,10 @@ export default function TransitionOverlay() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       const geometry = new THREE.PlaneGeometry(width, height);
+      // #f2efe7 in RGB [0..1]: R=242/255=0.949, G=239/255=0.937, B=231/255=0.906
       const material = new THREE.ShaderMaterial({
         uniforms: {
-          uColor: { value: new THREE.Vector3(0.04, 0.21, 0.15) }, // evergreen/dark color
+          uColor: { value: new THREE.Vector3(0.949, 0.937, 0.906) },
           uProgress: { value: 1.5 }
         },
         vertexShader,
@@ -146,14 +150,6 @@ export default function TransitionOverlay() {
   const executeSectionTransition = (target, label) => {
     isTransitioningRef.current = true;
 
-    // Route Target Mapping to Transition Index:
-    // 'hero' / 'home' -> 1 (Scale & Clip Inset Wipe)
-    // 'about'         -> 2 (WebGL Value Noise Shader Dissolve)
-    // 'skills'        -> 3 (GSAP SVG Bezier Curve Morph)
-    // 'projects'      -> 4 (Dynamic Title Overlay & Polygon Clip)
-    // 'experience'    -> 5 (GSAP Draw SVG Spiral & Stroke Inflation)
-    // 'contact'       -> 6 (Dual Clip-Path & Curtain Lift Overlay)
-
     if (target === 'hero' || target === 'home') {
       runTransition1(target);
     } else if (target === 'about') {
@@ -172,15 +168,32 @@ export default function TransitionOverlay() {
   };
 
   // ==========================================
-  // TRANSITION #1: Scale & Clip-Path Wipe (Home/Hero)
+  // TRANSITION #1: Scale & Inset Clip Wipe (Home - Color #F2b759)
   // ==========================================
   const runTransition1 = (target) => {
+    const overlay = t1OverlayRef.current;
     const targetEl = document.querySelector(`[data-section="${target}"]`);
     const activeSectionEl = document.querySelector('[data-section]:not([hidden])');
+
+    if (overlay) {
+      gsap.set(overlay, {
+        pointerEvents: 'auto',
+        autoAlpha: 1,
+        visibility: 'visible',
+        clipPath: 'inset(100% 0 0 0)'
+      });
+    }
 
     const tl = gsap.timeline({
       onComplete: () => {
         if (targetEl) gsap.set(targetEl, { clearProps: 'all' });
+        if (overlay) {
+          gsap.set(overlay, {
+            pointerEvents: 'none',
+            autoAlpha: 0,
+            visibility: 'hidden'
+          });
+        }
         isTransitioningRef.current = false;
         tl.kill();
       }
@@ -190,36 +203,45 @@ export default function TransitionOverlay() {
       tl.to(activeSectionEl, {
         scale: 0.85,
         opacity: 0.5,
-        duration: 0.5,
+        duration: 0.45,
         ease: 'power3.inOut'
       });
+    }
+
+    if (overlay) {
+      tl.to(
+        overlay,
+        {
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 0.6,
+          ease: 'power3.inOut'
+        },
+        '<'
+      );
     }
 
     tl.call(() => scrollToSection(target));
 
-    if (targetEl) {
-      gsap.set(targetEl, {
-        clipPath: 'inset(100% 0 0 0)',
-        scale: 0.95,
-        opacity: 1
-      });
-
-      tl.to(targetEl, {
-        clipPath: 'inset(0% 0 0 0)',
-        duration: 0.7,
+    if (overlay) {
+      tl.to(overlay, {
+        clipPath: 'inset(0 0 100% 0)',
+        duration: 0.6,
         ease: 'power3.inOut'
       });
+    }
 
-      tl.to(targetEl, {
-        scale: 1,
-        duration: 0.4,
-        ease: 'power2.out'
-      });
+    if (targetEl) {
+      tl.fromTo(
+        targetEl,
+        { scale: 0.9, opacity: 0.7 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'power2.out' },
+        '<+=0.1'
+      );
     }
   };
 
   // ==========================================
-  // TRANSITION #2: WebGL Value Noise Dissolve (About)
+  // TRANSITION #2: WebGL Value Noise Dissolve (About - Color #f2efe7)
   // ==========================================
   const runTransition2 = (target) => {
     const webgl = webglSceneRef.current;
@@ -231,6 +253,9 @@ export default function TransitionOverlay() {
 
     const canvas = webglCanvasRef.current;
     const { scene, camera, renderer, material } = webgl;
+
+    // Ensure uColor is exact #f2efe7 (R:0.949, G:0.937, B:0.906)
+    material.uniforms.uColor.value.set(0.949, 0.937, 0.906);
 
     const renderLoop = () => {
       renderer.render(scene, camera);
@@ -259,7 +284,6 @@ export default function TransitionOverlay() {
       }
     });
 
-    // Animate uProgress down to -0.75 (dissolving shader in over the screen)
     tl.to(material.uniforms.uProgress, {
       value: -0.75,
       duration: 0.9,
@@ -268,7 +292,6 @@ export default function TransitionOverlay() {
 
     tl.call(() => scrollToSection(target));
 
-    // Animate uProgress back to 1.5 (dissolving shader out revealing new page)
     tl.to(material.uniforms.uProgress, {
       value: 1.5,
       duration: 0.9,
@@ -278,7 +301,7 @@ export default function TransitionOverlay() {
   };
 
   // ==========================================
-  // TRANSITION #3: SVG Bezier Curve Morphing (Skills)
+  // TRANSITION #3: SVG Bezier Curve Morphing (Skills - Color #8b004a)
   // ==========================================
   const runTransition3 = (target) => {
     const container = svgMorphContainerRef.current;
@@ -289,6 +312,9 @@ export default function TransitionOverlay() {
       return;
     }
 
+    // Set path color to #8b004a
+    path.setAttribute('fill', '#8b004a');
+
     gsap.set(container, {
       pointerEvents: 'auto',
       autoAlpha: 1,
@@ -296,11 +322,6 @@ export default function TransitionOverlay() {
     });
 
     const startPath = 'M 0 100 V 100 Q 50 100 100 100 V 100 z';
-    const curve1 = 'M 0 100 V 50 Q 50 0 100 50 V 100 z';
-    const fullRect = 'M 0 100 V 0 Q 50 0 100 0 V 100 z';
-    const curve2 = 'M 0 0 V 50 Q 50 0 100 50 V 0 z';
-    const endPath = 'M 0 0 V 0 Q 50 0 100 0 V 0 z';
-
     gsap.set(path, { attr: { d: startPath } });
 
     const morphObj = { qy: 100, vy: 100 };
@@ -318,7 +339,6 @@ export default function TransitionOverlay() {
       }
     });
 
-    // Stage 1: Morph curve upward
     tl.to(morphObj, {
       qy: 0,
       vy: 50,
@@ -329,7 +349,6 @@ export default function TransitionOverlay() {
       }
     });
 
-    // Stage 2: Fill screen
     tl.to(morphObj, {
       vy: 0,
       duration: 0.35,
@@ -341,7 +360,6 @@ export default function TransitionOverlay() {
 
     tl.call(() => scrollToSection(target));
 
-    // Stage 3: Reverse curve collapse to top
     tl.to(morphObj, {
       qy: 50,
       vy: 0,
@@ -364,7 +382,7 @@ export default function TransitionOverlay() {
   };
 
   // ==========================================
-  // TRANSITION #4: Dynamic Title Overlay & Polygon Clip (Projects)
+  // TRANSITION #4: Dynamic Title Overlay & Polygon Clip (Projects - Color #00a19b)
   // ==========================================
   const runTransition4 = (target, label) => {
     const overlay = titleOverlayRef.current;
@@ -439,7 +457,7 @@ export default function TransitionOverlay() {
   };
 
   // ==========================================
-  // TRANSITION #5: GSAP Draw SVG Spiral & Stroke Inflation (Experience)
+  // TRANSITION #5: GSAP Draw SVG Spiral (Experience - Same #D4A853)
   // ==========================================
   const runTransition5 = (target) => {
     const container = svgDrawContainerRef.current;
@@ -479,7 +497,6 @@ export default function TransitionOverlay() {
 
     tl.to(path, { opacity: 1, duration: 0.3 });
 
-    // Draw spiral stroke 0% -> 100% while inflating stroke-width 100 -> 400
     tl.to(
       path,
       {
@@ -502,7 +519,6 @@ export default function TransitionOverlay() {
 
     tl.call(() => scrollToSection(target));
 
-    // Deflate stroke-width and erase stroke 100% -> 0%
     tl.to(path, {
       strokeWidth: 100,
       duration: 0.5,
@@ -521,7 +537,7 @@ export default function TransitionOverlay() {
   };
 
   // ==========================================
-  // TRANSITION #6: Dual Clip-Path & Curtain Lift Overlay (Contact)
+  // TRANSITION #6: Dual Clip Curtain Lift (Contact - Color #C87740)
   // ==========================================
   const runTransition6 = (target) => {
     const curtain = curtainOverlayRef.current;
@@ -561,7 +577,6 @@ export default function TransitionOverlay() {
 
     tl.call(() => scrollToSection(target));
 
-    // Lift curtain overlay up while expanding target section box outward
     tl.to(curtain, {
       clipPath: 'inset(0 0 100% 0)',
       duration: 0.95,
@@ -583,14 +598,21 @@ export default function TransitionOverlay() {
 
   return (
     <div ref={containerRef} className="transition-system-root">
-      {/* TRANSITION #2: WebGL Canvas Overlay (About) */}
+      {/* TRANSITION #1: Inset Clip Veil Overlay (Home - #F2b759) */}
+      <div
+        ref={t1OverlayRef}
+        className="fixed inset-0 z-[100] bg-[#F2b759] pointer-events-none opacity-0 invisible shadow-2xl"
+        style={{ willChange: 'clip-path' }}
+      />
+
+      {/* TRANSITION #2: WebGL Canvas Overlay (About - #f2efe7) */}
       <canvas
         ref={webglCanvasRef}
         id="transition-webgl-canvas"
         className="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible"
       />
 
-      {/* TRANSITION #3: SVG Bezier Curve Morph Overlay (Skills) */}
+      {/* TRANSITION #3: SVG Bezier Curve Morph Overlay (Skills - #8b004a) */}
       <div
         ref={svgMorphContainerRef}
         className="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible"
@@ -602,33 +624,33 @@ export default function TransitionOverlay() {
         >
           <path
             ref={svgMorphPathRef}
-            fill="var(--color-evergreen, #1F3A34)"
+            fill="#8b004a"
             d="M 0 100 V 100 Q 50 100 100 100 V 100 z"
           />
         </svg>
       </div>
 
-      {/* TRANSITION #4: Dynamic Title Overlay & Clip Polygon (Projects) */}
+      {/* TRANSITION #4: Dynamic Title Overlay & Clip Polygon (Projects - #00a19b) */}
       <div
         ref={titleOverlayRef}
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark/95 backdrop-blur-xl border-y border-amber/40 pointer-events-none opacity-0 invisible overflow-hidden shadow-2xl"
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#00a19b] backdrop-blur-xl border-y-2 border-teal-200/50 pointer-events-none opacity-0 invisible overflow-hidden shadow-2xl"
         style={{ willChange: 'clip-path' }}
       >
         <div className="flex flex-col items-center justify-center p-6 text-center">
-          <span className="font-body text-xs uppercase tracking-[0.3em] text-amber/70 mb-3 animate-pulse">
+          <span className="font-body text-xs uppercase tracking-[0.3em] text-white/80 mb-3 animate-pulse">
             Navigating To
           </span>
           <h2
             ref={titleTextRef}
-            className="font-heading text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wider text-amber drop-shadow-[0_0_25px_rgba(212,168,83,0.6)]"
+            className="font-heading text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wider text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
           >
             {destinationTitle || 'Projects'}
           </h2>
-          <div className="mt-4 h-0.5 w-24 bg-gradient-to-r from-transparent via-amber to-transparent" />
+          <div className="mt-4 h-0.5 w-24 bg-gradient-to-r from-transparent via-white to-transparent" />
         </div>
       </div>
 
-      {/* TRANSITION #5: GSAP Draw SVG Spiral Overlay (Experience) */}
+      {/* TRANSITION #5: GSAP Draw SVG Spiral Overlay (Experience - Same #D4A853) */}
       <div
         ref={svgDrawContainerRef}
         className="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible overflow-hidden flex items-center justify-center bg-dark/40 backdrop-blur-sm"
@@ -650,14 +672,12 @@ export default function TransitionOverlay() {
         </svg>
       </div>
 
-      {/* TRANSITION #6: Curtain Overlay for Dual Clip Lift (Contact) */}
+      {/* TRANSITION #6: Curtain Overlay for Dual Clip Lift (Contact - #C87740) */}
       <div
         ref={curtainOverlayRef}
-        className="fixed inset-0 z-[100] bg-evergreen/95 backdrop-blur-xl border-t-2 border-amber pointer-events-none opacity-0 invisible"
+        className="fixed inset-0 z-[100] bg-[#C87740] backdrop-blur-xl border-t-2 border-orange-200/50 pointer-events-none opacity-0 invisible shadow-2xl"
         style={{ willChange: 'clip-path' }}
       />
     </div>
   );
 }
-
-
