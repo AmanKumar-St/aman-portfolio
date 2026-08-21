@@ -39,7 +39,7 @@ export default function Projects() {
     <section
       ref={sectionRef}
       data-section="projects"
-      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24 bg-[#E4DDD3] transition-colors duration-500"
+      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24"
     >
       <div className="mx-auto w-full max-w-5xl">
         <div className="mb-16 text-center">

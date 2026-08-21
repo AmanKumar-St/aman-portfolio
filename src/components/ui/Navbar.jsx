@@ -136,9 +136,8 @@ export default function Navbar({ section }) {
               >
                 <span className="h-px w-7 bg-amber/40" />
                 <span
-                  className={`my-1 font-body text-xs uppercase tracking-widest transition-all duration-300 ${
-                    isActive ? 'scale-110 text-amber nav-glow' : 'text-frost/40 hover:text-amber'
-                  }`}
+                  className={`my-1 font-body text-xs uppercase tracking-widest transition-all duration-300 ${isActive ? 'scale-110 text-amber nav-glow' : 'text-frost/40 hover:text-amber'
+                    }`}
                 >
                   {item.label}
                 </span>

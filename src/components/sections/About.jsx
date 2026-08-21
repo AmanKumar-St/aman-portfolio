@@ -39,7 +39,7 @@ export default function About() {
     <section
       ref={sectionRef}
       data-section="about"
-      className="relative z-10 flex min-h-screen items-center justify-center px-4 py-24 bg-[#00A19B] transition-colors duration-500"
+      className="relative z-10 flex min-h-screen items-center justify-center px-4 py-24"
     >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-12 md:flex-row">
         <div

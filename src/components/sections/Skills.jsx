@@ -36,7 +36,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       data-section="skills"
-      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24 bg-[#F2EFE7] transition-colors duration-500"
+      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24"
     >
       <div className="mx-auto w-full max-w-5xl">
         <div className="mb-16 text-center">

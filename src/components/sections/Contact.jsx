@@ -104,7 +104,7 @@ export default function Contact() {
     <section
       ref={sectionRef}
       data-section="contact"
-      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24 bg-[#2E1F26] transition-colors duration-500"
+      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24"
     >
       <div className="mx-auto w-full max-w-4xl">
         <div ref={titleRef} className="mb-16 text-center">
