@@ -36,41 +36,41 @@ export default function Skills() {
     <section
       ref={sectionRef}
       data-section="skills"
-      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24"
+      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-24 bg-[#F2EFE7] transition-colors duration-500"
     >
       <div className="mx-auto w-full max-w-5xl">
         <div className="mb-16 text-center">
-          <h2 className="font-heading text-3xl font-semibold text-frost md:text-4xl">
-            Skills & <span className="text-amber">Expertise</span>
+          <h2 className="font-heading text-3xl font-bold text-[#0A3625] md:text-4xl">
+            Skills & <span className="text-[#8b004a]">Expertise</span>
           </h2>
-          <div className="mx-auto mt-2 h-1 w-16 bg-amber/60" />
-          <p className="mt-4 font-body text-frost/50">
+          <div className="mx-auto mt-2 h-1 w-16 bg-[#8b004a]" />
+          <p className="mt-4 font-body font-medium text-[#1F3A34]/80">
             technologies I work with
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
           {categories.map(([category, skills], i) => {
-            const colors = skillColors[category] || { primary: '#D4A853', secondary: '#C49A3E' };
+            const colors = skillColors[category] || { primary: '#8b004a', secondary: '#C49A3E' };
             return (
               <div
                 key={category}
                 ref={(el) => (cardsRef.current[i] = el)}
-                className="group rounded-2xl border border-frost/10 bg-evergreen/30 p-8 backdrop-blur-sm opacity-0"
+                className="group rounded-2xl border border-[#0A3625]/15 bg-white/80 p-8 backdrop-blur-md opacity-0 shadow-lg hover:shadow-xl transition-all duration-300"
                 style={{ transform: 'translateY(30px)' }}
               >
                 <div
-                  className="mb-4 h-3 w-3 rounded-full"
+                  className="mb-4 h-3.5 w-3.5 rounded-full"
                   style={{ backgroundColor: colors.primary }}
                 />
-                <h3 className="font-heading text-xl font-semibold text-frost">
+                <h3 className="font-heading text-xl font-bold text-[#0A3625]">
                   {category}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full border border-frost/10 px-3 py-1 font-body text-xs text-frost/60 transition-all duration-300 group-hover:border-amber/30 group-hover:text-amber/80"
+                      className="rounded-full border border-[#0A3625]/20 bg-[#0A3625]/5 px-3 py-1 font-body text-xs font-semibold text-[#0A3625] transition-all duration-300 group-hover:border-[#8b004a] group-hover:bg-[#8b004a] group-hover:text-white"
                     >
                       {skill}
                     </span>
