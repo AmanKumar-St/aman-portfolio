@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-
-const NAV_ITEMS = [
-  { label: 'Home', target: 'hero' },
-  { label: 'About', target: 'about' },
-  { label: 'Skills', target: 'skills' },
-  { label: 'Projects', target: 'projects' },
-  { label: 'Experience', target: 'experience' },
-];
+import { NAV_ITEMS } from '../../constants/nav';
+import { triggerSectionTransition } from './TransitionOverlay';
 
 const WHEEL_COOLDOWN = 120;
 
@@ -18,7 +12,7 @@ const angleOpacity = (offsetRad, upFade, downFull, downFade) => {
   return clamp(1 - (offsetRad - downFull) / downFade, 0, 1);
 };
 
-// Fixed geometry (tuning panel removed).
+// Fixed geometry layout for radial nav
 const CONFIG = {
   radius: 80,
   anchorAngle: 0, // degrees; 0 = east (right of the badge)
@@ -27,9 +21,9 @@ const CONFIG = {
   upFade: 0.5,
   downFull: 0.3,
   downFade: 0.5,
-  spacing: 70, // degrees between consecutive options
+  spacing: 60, // degrees between consecutive options (adjusted for 6 items)
   curvature: 1, // vertical radius / horizontal radius (1 = circle)
-  optionOffset: [0, 0, 0, 0, 0], // per-option angular nudge (degrees)
+  optionOffset: [0, 0, 0, 0, 0, 0], // per-option angular nudge (degrees)
 };
 
 export default function Navbar({ section }) {
@@ -43,14 +37,17 @@ export default function Navbar({ section }) {
   const [cfg] = useState(CONFIG);
   const activeIndex = clamp(section ?? 0, 0, NAV_ITEMS.length - 1);
 
-  // Wheel / arrow over the nav advances the whole page to the next / previous
-  // section (the ring re-centers on the active section via the `section` prop).
+  const navigateTo = (idx) => {
+    const targetItem = NAV_ITEMS[idx];
+    if (!targetItem) return;
+    triggerSectionTransition(targetItem.target, targetItem.label);
+  };
+
   const goToSection = (dir) => {
     const current = clamp(sectionRef.current ?? 0, 0, NAV_ITEMS.length - 1);
     const next = clamp(current + dir, 0, NAV_ITEMS.length - 1);
-    if (next === current) return false; // at boundary: let the page scroll
-    const el = document.querySelector(`[data-section="${NAV_ITEMS[next].target}"]`);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (next === current) return false;
+    navigateTo(next);
     return true;
   };
 
@@ -59,7 +56,7 @@ export default function Navbar({ section }) {
     if (!el) return;
     const onWheel = (e) => {
       const moved = goToSection(e.deltaY > 0 ? 1 : -1);
-      if (!moved) return; // boundary: allow native page scroll
+      if (!moved) return;
       e.preventDefault();
       const now = performance.now();
       if (now - lastWheel.current < WHEEL_COOLDOWN) return;
@@ -87,7 +84,7 @@ export default function Navbar({ section }) {
 
   return (
     <nav aria-label="Section navigation">
-      {/* Static profile logo (the arc is anchored on it). Always visible. */}
+      {/* Static profile logo */}
       <div
         className="fixed z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md shadow-lg"
         style={{ left: cfg.badgeX, top: cfg.badgeY }}
@@ -95,8 +92,7 @@ export default function Navbar({ section }) {
         AK
       </div>
 
-      {/* Full-screen, click/wheel-transparent layer. Only the option buttons
-          (pointer-events:auto) capture input. Always visible (no hover gate). */}
+      {/* Radial nav layer */}
       <div
         ref={dialRef}
         className="fixed inset-0 z-30 pointer-events-none"
@@ -106,13 +102,11 @@ export default function Navbar({ section }) {
           const offset =
             (i - activeIndex) * stepRad +
             anchorRad +
-            (cfg.optionOffset[i] * Math.PI) / 180;
+            ((cfg.optionOffset[i] || 0) * Math.PI) / 180;
           const x = center.x + rx * Math.cos(offset);
           const y = center.y + ry * Math.sin(offset);
           const isActive = i === activeIndex;
           const opacity = angleOpacity(offset, cfg.upFade, cfg.downFull, cfg.downFade);
-          // Mount slide-out: inner content starts collapsed at the badge and
-          // eases outward to its arc position (staggered per item).
           const slideX = center.x - x;
           const slideY = center.y - y;
 
@@ -124,7 +118,8 @@ export default function Navbar({ section }) {
               aria-label={`${item.label} section`}
               aria-current={isActive ? 'true' : undefined}
               tabIndex={0}
-              className="radial-nav-item pointer-events-auto absolute left-0 top-0 flex flex-col items-center justify-center focus:outline-none"
+              onClick={() => navigateTo(i)}
+              className="radial-nav-item pointer-events-auto absolute left-0 top-0 flex flex-col items-center justify-center focus:outline-none cursor-pointer"
               style={{
                 width: 84,
                 transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
@@ -142,7 +137,7 @@ export default function Navbar({ section }) {
                 <span className="h-px w-7 bg-amber/40" />
                 <span
                   className={`my-1 font-body text-xs uppercase tracking-widest transition-all duration-300 ${
-                    isActive ? 'scale-110 text-amber nav-glow' : 'text-frost/40'
+                    isActive ? 'scale-110 text-amber nav-glow' : 'text-frost/40 hover:text-amber'
                   }`}
                 >
                   {item.label}

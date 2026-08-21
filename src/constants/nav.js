@@ -4,4 +4,5 @@ export const NAV_ITEMS = [
   { label: 'Skills', target: 'skills' },
   { label: 'Projects', target: 'projects' },
   { label: 'Experience', target: 'experience' },
+  { label: 'Contact', target: 'contact' },
 ];

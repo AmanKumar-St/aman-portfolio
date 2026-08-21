@@ -4,6 +4,7 @@ export const CAMERA_SECTIONS = [
   { y: -10, z: 5, rot: 0.2 },
   { y: -16, z: 5, rot: 0.3 },
   { y: -22, z: 6, rot: 0 },
+  { y: -28, z: 6, rot: 0.1 },
 ];
 
 export const PARTICLE_COUNT = 1200;

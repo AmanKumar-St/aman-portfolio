@@ -40,7 +40,14 @@ export const personalData = {
       period: "",
       description: "Comprehensive education in computer science with focus on AI, ML, and cybersecurity."
     }
-  ]
+  ],
+  contact: {
+    email: "aman.kumar.dev@example.com",
+    location: "Punjab, India",
+    availability: "Open for AI/ML & Engineering Roles",
+    github: "https://github.com/AmanKumar-St",
+    linkedin: "https://www.linkedin.com/in/aman-kumar-81464417a/"
+  }
 };
 
 export const skillColors = {
