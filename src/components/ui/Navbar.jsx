@@ -83,71 +83,73 @@ export default function Navbar({ section }) {
   const ry = cfg.radius * cfg.curvature;
 
   return (
-    <nav aria-label="Section navigation">
-      {/* Static profile logo */}
-      <div
-        className="fixed z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md shadow-lg"
-        style={{ left: cfg.badgeX, top: cfg.badgeY }}
-      >
-        AK
-      </div>
+    <div className="hidden md:block">
+      <nav aria-label="Section navigation">
+        {/* Static profile logo */}
+        <div
+          className="fixed z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md shadow-lg"
+          style={{ left: cfg.badgeX, top: cfg.badgeY }}
+        >
+          AK
+        </div>
 
-      {/* Radial nav layer */}
-      <div
-        ref={dialRef}
-        className="fixed inset-0 z-30 pointer-events-none"
-        onKeyDown={handleKeyDown}
-      >
-        {NAV_ITEMS.map((item, i) => {
-          const offset =
-            (i - activeIndex) * stepRad +
-            anchorRad +
-            ((cfg.optionOffset[i] || 0) * Math.PI) / 180;
-          const x = center.x + rx * Math.cos(offset);
-          const y = center.y + ry * Math.sin(offset);
-          const isActive = i === activeIndex;
-          const opacity = angleOpacity(offset, cfg.upFade, cfg.downFull, cfg.downFade);
-          const slideX = center.x - x;
-          const slideY = center.y - y;
+        {/* Radial nav layer */}
+        <div
+          ref={dialRef}
+          className="fixed inset-0 z-30 pointer-events-none"
+          onKeyDown={handleKeyDown}
+        >
+          {NAV_ITEMS.map((item, i) => {
+            const offset =
+              (i - activeIndex) * stepRad +
+              anchorRad +
+              ((cfg.optionOffset[i] || 0) * Math.PI) / 180;
+            const x = center.x + rx * Math.cos(offset);
+            const y = center.y + ry * Math.sin(offset);
+            const isActive = i === activeIndex;
+            const opacity = angleOpacity(offset, cfg.upFade, cfg.downFull, cfg.downFade);
+            const slideX = center.x - x;
+            const slideY = center.y - y;
 
-          return (
-            <button
-              key={item.target}
-              type="button"
-              role="menuitem"
-              aria-label={`${item.label} section`}
-              aria-current={isActive ? 'true' : undefined}
-              tabIndex={0}
-              onClick={() => navigateTo(i)}
-              className="radial-nav-item pointer-events-auto absolute left-0 top-0 flex flex-col items-center justify-center focus:outline-none cursor-pointer"
-              style={{
-                width: 84,
-                transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
-                opacity,
-              }}
-            >
-              <span
-                className="nav-enter flex flex-col items-center justify-center"
+            return (
+              <button
+                key={item.target}
+                type="button"
+                role="menuitem"
+                aria-label={`${item.label} section`}
+                aria-current={isActive ? 'true' : undefined}
+                tabIndex={0}
+                onClick={() => navigateTo(i)}
+                className="radial-nav-item pointer-events-auto absolute left-0 top-0 flex flex-col items-center justify-center focus:outline-none cursor-pointer"
                 style={{
-                  '--sx': `${slideX}px`,
-                  '--sy': `${slideY}px`,
-                  animationDelay: `${i * 60}ms`,
+                  width: 84,
+                  transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
+                  opacity,
                 }}
               >
-                <span className="h-px w-7 bg-amber/40" />
                 <span
-                  className={`my-1 font-body text-xs uppercase tracking-widest transition-all duration-300 ${
-                    isActive ? 'scale-110 text-amber nav-glow' : 'text-frost/40 hover:text-amber'
-                  }`}
+                  className="nav-enter flex flex-col items-center justify-center"
+                  style={{
+                    '--sx': `${slideX}px`,
+                    '--sy': `${slideY}px`,
+                    animationDelay: `${i * 60}ms`,
+                  }}
                 >
-                  {item.label}
+                  <span className="h-px w-7 bg-amber/40" />
+                  <span
+                    className={`my-1 font-body text-xs uppercase tracking-widest transition-all duration-300 ${
+                      isActive ? 'scale-110 text-amber nav-glow' : 'text-frost/40 hover:text-amber'
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                  <span className="h-px w-7 bg-amber/40" />
                 </span>
-                <span className="h-px w-7 bg-amber/40" />
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </div>
   );
 }
