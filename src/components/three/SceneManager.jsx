@@ -2,10 +2,10 @@ import { useRef, useMemo } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import ParticleField from './ParticleField';
-import OrganicMorph from './OrganicMorph';
 import SkillCell from './SkillCell';
 import ProjectCrystal from './ProjectCrystal';
 import ExperienceVine from './ExperienceVine';
+import TempleNightEnvironment from '../scene/TempleNightEnvironment';
 import { personalData, skillColors } from '../../data/content';
 import { CAMERA_SECTIONS, CAMERA_DEFAULT_Z } from '../../constants/scene';
 import { COLORS } from '../../constants/colors';
@@ -54,25 +54,10 @@ export default function SceneManager({ scrollProgress, section }) {
 
   return (
     <group ref={groupRef}>
+      {/* Procedural Temple Night 3D Environment */}
+      <TempleNightEnvironment scrollProgress={scrollProgress} section={section} />
+
       <ParticleField scrollProgress={scrollProgress} />
-
-      <OrganicMorph
-        position={[0, 0, -2]}
-        scale={1.2}
-        color={COLORS.amber}
-        speed={0.4}
-        intensity={0.4}
-      />
-
-      {section >= 1 && (
-        <OrganicMorph
-          position={[3, -5, -3]}
-          scale={0.8}
-          color={COLORS.moss}
-          speed={0.3}
-          intensity={0.3}
-        />
-      )}
 
       {section >= 2 &&
         Object.keys(personalData.skills).map((key, i) => (
@@ -96,12 +81,6 @@ export default function SceneManager({ scrollProgress, section }) {
         ))}
 
       {section >= 4 && <ExperienceVine scrollProgress={scrollProgress} />}
-
-      <ambientLight intensity={0.45} color={COLORS.moss} />
-      <pointLight position={[0, 5, 5]} intensity={0.9} color={COLORS.amber} />
-      <pointLight position={[-5, -3, 3]} intensity={0.4} color={COLORS.moss} />
-      <pointLight position={[5, 0, 4]} intensity={0.35} color={COLORS.purple} />
-      <fog attach="fog" args={[COLORS.dark, 12, 28]} />
     </group>
   );
 }
