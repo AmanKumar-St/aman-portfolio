@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowSquareOut, GithubLogo, CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { personalData } from '../../data/content';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import MorphSlider from '../ui/MorphSlider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,103 +119,127 @@ export default function Projects() {
               prefersReduced || totalProjects <= 1 ? 'md:grid md:grid-cols-2 md:gap-8' : 'md:flex-nowrap'
             }`}
           >
-            {personalData.projects.map((project, i) => (
-              <div
-                key={project.title || i}
-                className={`w-[85vw] max-w-[340px] sm:w-[450px] flex-shrink-0 snap-center ${
-                  prefersReduced || totalProjects <= 1
-                    ? 'md:w-full md:max-w-none md:flex-shrink'
-                    : 'md:w-[650px] lg:w-[720px]'
-                }`}
-              >
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-frost/10 bg-evergreen/20 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-amber/30 flex flex-col justify-between">
-                  {/* Glow */}
-                  <div className="project-glow pointer-events-none absolute -inset-1 opacity-20 transition-opacity duration-500 group-hover:opacity-40">
-                    <div
-                      className="h-full w-full rounded-2xl blur-xl"
-                      style={{
-                        background:
-                          project.type === 'treasure'
-                            ? 'radial-gradient(ellipse at center, rgba(212,168,83,0.2), transparent)'
-                            : 'radial-gradient(ellipse at center, rgba(124,111,224,0.2), transparent)'
-                      }}
-                    />
-                  </div>
+            {personalData.projects.map((project, i) => {
+              const sliderItems = project.images || [
+                { image: project.image || 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1600&auto=format&fit=crop', caption: project.title }
+              ];
 
-                  <div className="relative">
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="inline-block h-2 w-2 rounded-full flex-shrink-0"
-                          style={{
-                            backgroundColor: project.type === 'treasure' ? '#D4A853' : '#7C6FE0'
-                          }}
+              return (
+                <div
+                  key={project.title || i}
+                  className={`w-[85vw] max-w-[340px] sm:w-[450px] flex-shrink-0 snap-center ${
+                    prefersReduced || totalProjects <= 1
+                      ? 'md:w-full md:max-w-none md:flex-shrink'
+                      : 'md:w-[650px] lg:w-[720px]'
+                  }`}
+                >
+                  <div className="group relative h-full overflow-hidden rounded-2xl border border-frost/10 bg-evergreen/20 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-amber/30 flex flex-col justify-between">
+                    {/* Glow */}
+                    <div className="project-glow pointer-events-none absolute -inset-1 opacity-20 transition-opacity duration-500 group-hover:opacity-40">
+                      <div
+                        className="h-full w-full rounded-2xl blur-xl"
+                        style={{
+                          background:
+                            project.type === 'treasure'
+                              ? 'radial-gradient(ellipse at center, rgba(212,168,83,0.2), transparent)'
+                              : 'radial-gradient(ellipse at center, rgba(124,111,224,0.2), transparent)'
+                        }}
+                      />
+                    </div>
+
+                    <div className="relative">
+                      {/* Embedded WebGL MorphSlider for each project */}
+                      <div className="relative w-full h-[240px] sm:h-[300px] mb-6 rounded-xl overflow-hidden border border-frost/15 shadow-lg">
+                        <MorphSlider
+                          items={sliderItems}
+                          transition="melt"
+                          intensity={0.55}
+                          aberration={0.35}
+                          drift={0.4}
+                          autoplay={true}
+                          autoplayDelay={4}
+                          showCaptions={true}
+                          showControls={true}
+                          showIndicators={true}
+                          radius={12}
+                          className="w-full h-full"
                         />
-                        <span className="font-body text-xs uppercase tracking-wider text-frost/60">
-                          {project.type === 'treasure' ? 'Web Design' : 'Full Stack'}
+                      </div>
+
+                      <div className="mb-4 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="inline-block h-2 w-2 rounded-full flex-shrink-0"
+                            style={{
+                              backgroundColor: project.type === 'treasure' ? '#D4A853' : '#7C6FE0'
+                            }}
+                          />
+                          <span className="font-body text-xs uppercase tracking-wider text-frost/60">
+                            {project.type === 'treasure' ? 'Web Design' : 'Full Stack'}
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs text-moss/60 md:hidden">
+                          {String(i + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
                         </span>
                       </div>
-                      <span className="font-mono text-xs text-moss/60 md:hidden">
-                        {String(i + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
-                      </span>
+
+                      <h3 className="font-heading text-2xl font-semibold text-frost transition-colors duration-300 group-hover:text-amber">
+                        {project.title}
+                      </h3>
+
+                      <p className="mt-3 font-body text-sm leading-relaxed text-frost/75">
+                        {project.description}
+                      </p>
+
+                      <p className="mt-4 font-body text-xs italic text-amber/80">
+                        {project.tagline}
+                      </p>
                     </div>
 
-                    <h3 className="font-heading text-2xl font-semibold text-frost transition-colors duration-300 group-hover:text-amber">
-                      {project.title}
-                    </h3>
+                    <div className="relative mt-6 pt-4 border-t border-frost/10">
+                      <div className="mb-5 flex flex-wrap gap-2">
+                        {project.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-full border border-frost/15 px-3 py-1 font-body text-xs text-frost/75"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
 
-                    <p className="mt-3 font-body text-sm leading-relaxed text-frost/75">
-                      {project.description}
-                    </p>
-
-                    <p className="mt-4 font-body text-xs italic text-amber/80">
-                      {project.tagline}
-                    </p>
-                  </div>
-
-                  <div className="relative mt-6 pt-4 border-t border-frost/10">
-                    <div className="mb-5 flex flex-wrap gap-2">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full border border-frost/15 px-3 py-1 font-body text-xs text-frost/75"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-4">
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 font-body text-sm text-amber transition-all duration-300 hover:text-amber/80 focus:outline-none focus:ring-2 focus:ring-amber rounded"
-                          aria-label={`View ${project.title} on GitHub`}
-                        >
-                          <GithubLogo size={16} weight="fill" aria-hidden="true" />
-                          View on GitHub
-                          <ArrowSquareOut size={14} aria-hidden="true" />
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 font-body text-sm text-frost/70 transition-all duration-300 hover:text-frost focus:outline-none focus:ring-2 focus:ring-amber rounded"
-                          aria-label={`View ${project.title} live demo`}
-                        >
-                          Live Demo
-                          <ArrowSquareOut size={14} aria-hidden="true" />
-                        </a>
-                      )}
+                      <div className="flex flex-wrap items-center gap-4">
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 font-body text-sm text-amber transition-all duration-300 hover:text-amber/80 focus:outline-none focus:ring-2 focus:ring-amber rounded"
+                            aria-label={`View ${project.title} on GitHub`}
+                          >
+                            <GithubLogo size={16} weight="fill" aria-hidden="true" />
+                            View on GitHub
+                            <ArrowSquareOut size={14} aria-hidden="true" />
+                          </a>
+                        )}
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 font-body text-sm text-frost/70 transition-all duration-300 hover:text-frost focus:outline-none focus:ring-2 focus:ring-amber rounded"
+                            aria-label={`View ${project.title} live demo`}
+                          >
+                            Live Demo
+                            <ArrowSquareOut size={14} aria-hidden="true" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
