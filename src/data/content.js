@@ -11,11 +11,20 @@ export const personalData = {
   },
   projects: [
     {
+      title: "FairShare for managing trip or outing expenses",
+      tagline: "FairShare is a mobile application that helps you manage trip or outing expenses",
+      tech: ["Typescript", "GoogleStudios", "Firebase", "GoogleAuth"],
+      link: "https://github.com/AmanKumar-St/FaireShare.git",
+      demo: "https://fairshare-2.ai.studio/",
+      type: "Management",
+      description: "FairShare is a mobile application that helps you manage trip or outing expenses. It is a lightweight, easy-to-use application that can be used by anyone to manage their trip or outing expenses. It is a free application and can be downloaded from the Google Play Store."
+    },
+    {
       title: "OnePiece Tribute",
       tagline: "\"If you don't take risks, you can't create a future.\" — Monkey D. Luffy",
       tech: ["Vite.js", "GSAP", "TailwindCSS", "Figma"],
       link: "https://github.com/AmanKumar-St/OP-Tribute-website.git",
-      demo: null,
+      demo: "https://op-tribute-website.vercel.app",
       type: "treasure",
       description: "A tribute page honoring the greatest anime ever created. Built with smooth animations and pixel-perfect design."
     },
@@ -31,21 +40,40 @@ export const personalData = {
   ],
   experience: [
     {
+      role: "Secondary Education",
+      company: "Maxwell High School, Baijalpur, Bihar",
+      period: "2017 - 2018",
+      description: "Completed secondary education with science stream and scored 84% marks."
+    },
+    {
+      role: "Senior Secondary Education",
+      company: "Gurukul Vidyapeeth, Hajipur, Vaishali, Bihar",
+      period: "2019 - 2020",
+      description: "Completed senior secondary education with science stream and scored 90.3% marks."
+    },
+    {
+      role: "Appeared in JEE Mains",
+      company: "Gurukul Vidyapeeth, Hajipur",
+      period: "2021-2022",
+      description: "Appeared for JEE Mains"
+    },
+    {
+      role: "B.Tech Computer Science",
+      company: "Punjab Technical University",
+      period: "2023 – 2027",
+      description: "Comprehensive education in computer science with focus on AI, ML, and cybersecurity."
+    }, 
+    {
       role: "Cybersecurity Intern",
       company: "Acmegrade",
       period: "2024",
       description: "Hands-on experience in network security, vulnerability assessment, and security operations."
     },
-    {
-      role: "B.Tech Computer Science",
-      company: "Punjab Technical University",
-      period: "2021 – Present",
-      description: "Comprehensive education in computer science with focus on AI, ML, and cybersecurity."
-    }
+    
   ],
   contact: {
-    email: "amankumar.st@gmail.com",
-    location: "Punjab, India",
+    email: "[EMAIL_ADDRESS]",
+    location: "Resides in Sonpur, Bihar",
     availability: "Open for AI/ML & Engineering Roles",
     github: "https://github.com/AmanKumar-St",
     linkedin: "https://www.linkedin.com/in/aman-kumar-81464417a/"
