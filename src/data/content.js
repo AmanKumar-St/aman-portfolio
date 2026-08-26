@@ -15,6 +15,7 @@ export const personalData = {
       tagline: "\"If you don't take risks, you can't create a future.\" — Monkey D. Luffy",
       tech: ["Vite.js", "GSAP", "TailwindCSS", "Figma"],
       link: "https://github.com/AmanKumar-St/OP-Tribute-website.git",
+      demo: null,
       type: "treasure",
       description: "A tribute page honoring the greatest anime ever created. Built with smooth animations and pixel-perfect design."
     },
@@ -22,7 +23,8 @@ export const personalData = {
       title: "Movie App",
       tagline: "Browse trending movies, search titles, and explore TMDB content",
       tech: ["React.js", "Appwrite", "TailwindCSS", "TMDB API"],
-      link: null,
+      link: "https://github.com/AmanKumar-St",
+      demo: null,
       type: "reel",
       description: "Full-stack React movie app with Appwrite backend, TMDB API integration, responsive design, and sleek modern UI."
     }
@@ -31,18 +33,18 @@ export const personalData = {
     {
       role: "Cybersecurity Intern",
       company: "Acmegrade",
-      period: "",
+      period: "2024",
       description: "Hands-on experience in network security, vulnerability assessment, and security operations."
     },
     {
       role: "B.Tech Computer Science",
       company: "Punjab Technical University",
-      period: "",
+      period: "2021 – Present",
       description: "Comprehensive education in computer science with focus on AI, ML, and cybersecurity."
     }
   ],
   contact: {
-    email: "aman.kumar.dev@example.com",
+    email: "amankumar.st@gmail.com",
     location: "Punjab, India",
     availability: "Open for AI/ML & Engineering Roles",
     github: "https://github.com/AmanKumar-St",
@@ -55,3 +57,4 @@ export const skillColors = {
   "Cybersecurity": { primary: "#4ECDC4", secondary: "#36B5AD" },
   "Frontend Development": { primary: "#D4A853", secondary: "#C49A3E" }
 };
+

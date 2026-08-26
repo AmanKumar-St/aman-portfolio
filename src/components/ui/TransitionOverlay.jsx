@@ -95,7 +95,8 @@ export default function TransitionOverlay() {
       // #f2efe7 in RGB [0..1]: R=242/255=0.949, G=239/255=0.937, B=231/255=0.906
       const material = new THREE.ShaderMaterial({
         uniforms: {
-          uColor: { value: new THREE.Vector3(0.949, 0.937, 0.906) },
+          // #1F3A34 (evergreen brand bg) — R:0.122, G:0.227, B:0.204
+          uColor: { value: new THREE.Vector3(0.122, 0.227, 0.204) },
           uProgress: { value: 1.5 }
         },
         vertexShader,
@@ -254,8 +255,8 @@ export default function TransitionOverlay() {
     const canvas = webglCanvasRef.current;
     const { scene, camera, renderer, material } = webgl;
 
-    // Ensure uColor is exact #f2efe7 (R:0.949, G:0.937, B:0.906)
-    material.uniforms.uColor.value.set(0.949, 0.937, 0.906);
+    // Use brand evergreen color #1F3A34 (R:0.122, G:0.227, B:0.204)
+    material.uniforms.uColor.value.set(0.122, 0.227, 0.204);
 
     const renderLoop = () => {
       renderer.render(scene, camera);
@@ -312,8 +313,8 @@ export default function TransitionOverlay() {
       return;
     }
 
-    // Set path color to #8b004a
-    path.setAttribute('fill', '#8b004a');
+    // Set path color to brand moss (#5A7D6E)
+    path.setAttribute('fill', '#5A7D6E');
 
     gsap.set(container, {
       pointerEvents: 'auto',
@@ -598,10 +599,10 @@ export default function TransitionOverlay() {
 
   return (
     <div ref={containerRef} className="transition-system-root">
-      {/* TRANSITION #1: Inset Clip Veil Overlay (Home - #F2b759) */}
+      {/* TRANSITION #1: Inset Clip Veil Overlay (Home - brand amber) */}
       <div
         ref={t1OverlayRef}
-        className="fixed inset-0 z-[100] bg-[#F2b759] pointer-events-none opacity-0 invisible shadow-2xl"
+        className="fixed inset-0 z-[100] bg-amber pointer-events-none opacity-0 invisible shadow-2xl"
         style={{ willChange: 'clip-path' }}
       />
 
@@ -624,7 +625,7 @@ export default function TransitionOverlay() {
         >
           <path
             ref={svgMorphPathRef}
-            fill="#8b004a"
+            fill="#5A7D6E"
             d="M 0 100 V 100 Q 50 100 100 100 V 100 z"
           />
         </svg>
@@ -633,7 +634,7 @@ export default function TransitionOverlay() {
       {/* TRANSITION #4: Dynamic Title Overlay & Clip Polygon (Projects - #00a19b) */}
       <div
         ref={titleOverlayRef}
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#00a19b] backdrop-blur-xl border-y-2 border-teal-200/50 pointer-events-none opacity-0 invisible overflow-hidden shadow-2xl"
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-evergreen backdrop-blur-xl border-y-2 border-amber/20 pointer-events-none opacity-0 invisible overflow-hidden shadow-2xl"
         style={{ willChange: 'clip-path' }}
       >
         <div className="flex flex-col items-center justify-center p-6 text-center">
@@ -672,10 +673,10 @@ export default function TransitionOverlay() {
         </svg>
       </div>
 
-      {/* TRANSITION #6: Curtain Overlay for Dual Clip Lift (Contact - #C87740) */}
+      {/* TRANSITION #6: Curtain Overlay for Dual Clip Lift (Contact - brand amber) */}
       <div
         ref={curtainOverlayRef}
-        className="fixed inset-0 z-[100] bg-[#C87740] backdrop-blur-xl border-t-2 border-orange-200/50 pointer-events-none opacity-0 invisible shadow-2xl"
+        className="fixed inset-0 z-[100] bg-amber backdrop-blur-xl border-t-2 border-amber/30 pointer-events-none opacity-0 invisible shadow-2xl"
         style={{ willChange: 'clip-path' }}
       />
     </div>

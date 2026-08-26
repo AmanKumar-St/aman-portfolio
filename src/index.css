@@ -7,8 +7,9 @@
   --color-moss: #5A7D6E;
   --color-dark: #0A3625;
   --color-deep: #060d0a;
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Archivo', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 * {
@@ -19,9 +20,9 @@
 
 html {
   scroll-behavior: smooth;
-  /* Whole page advances one section per scroll wheel. Switch to `proximity`
-     for a gentler feel that only snaps when you're already near a section. */
-  scroll-snap-type: y mandatory;
+  /* proximity = snaps only when close to a snap point,
+     avoids the trackpad / wheel-interception conflict. */
+  scroll-snap-type: y proximity;
 }
 
 /* Each section is a snap point at the top of the viewport. */
@@ -31,6 +32,7 @@ html {
 
 body {
   font-family: var(--font-body);
+  background: var(--color-dark);
   color: var(--color-frost);
   overflow-x: hidden;
 }
@@ -68,7 +70,6 @@ body {
   from {
     transform: translate(var(--sx, 0), var(--sy, 0));
   }
-
   to {
     transform: translate(0, 0);
   }
@@ -78,12 +79,21 @@ body {
   animation: navSlideOut 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
+/* ─── Reduced-Motion Overrides ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .radial-nav-item {
     transition: none;
   }
-
   .nav-enter {
     animation: none;
   }
+
+  /* Guarantee content is always visible even if GSAP hasn't run yet */
+  [data-section] * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }
+

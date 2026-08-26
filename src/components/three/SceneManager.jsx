@@ -96,11 +96,11 @@ export default function SceneManager({ scrollProgress, section }) {
 
       {section >= 4 && <ExperienceVine scrollProgress={scrollProgress} />}
 
-      <ambientLight intensity={0.3} color={COLORS.moss} />
-      <pointLight position={[0, 5, 5]} intensity={0.8} color={COLORS.amber} />
+      <ambientLight intensity={0.45} color={COLORS.moss} />
+      <pointLight position={[0, 5, 5]} intensity={0.9} color={COLORS.amber} />
       <pointLight position={[-5, -3, 3]} intensity={0.4} color={COLORS.moss} />
-      <pointLight position={[5, 0, 4]} intensity={0.3} color={COLORS.purple} />
-      <fog attach="fog" args={[COLORS.dark, 8, 20]} />
+      <pointLight position={[5, 0, 4]} intensity={0.35} color={COLORS.purple} />
+      <fog attach="fog" args={[COLORS.dark, 12, 28]} />
     </group>
   );
 }
