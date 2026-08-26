@@ -86,7 +86,7 @@ export default function Navbar({ section }) {
     <nav aria-label="Section navigation">
       {/* Static profile logo */}
       <div
-        className="fixed z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md shadow-lg"
+        className="fixed z-50 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-amber/40 bg-evergreen/40 font-heading text-lg font-semibold text-amber backdrop-blur-md shadow-lg"
         style={{ left: cfg.badgeX, top: cfg.badgeY }}
       >
         AK
@@ -95,7 +95,7 @@ export default function Navbar({ section }) {
       {/* Radial nav layer */}
       <div
         ref={dialRef}
-        className="fixed inset-0 z-30 pointer-events-none"
+        className="fixed inset-0 z-30 pointer-events-none hidden md:block"
         onKeyDown={handleKeyDown}
       >
         {NAV_ITEMS.map((item, i) => {

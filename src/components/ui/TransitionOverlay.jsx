@@ -129,48 +129,12 @@ export default function TransitionOverlay() {
     }
   }, []);
 
-  useEffect(() => {
-    const handleTransitionEvent = (e) => {
-      const { target, label } = e.detail || {};
-      if (!target || isTransitioningRef.current) return;
-      executeSectionTransition(target, label || target);
-    };
 
-    window.addEventListener('trigger-section-transition', handleTransitionEvent);
-    return () => window.removeEventListener('trigger-section-transition', handleTransitionEvent);
-  }, []);
-
-  const scrollToSection = (target) => {
-    const el = document.querySelector(`[data-section="${target}"]`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'auto' });
-    }
-  };
-
-  const executeSectionTransition = (target, label) => {
-    isTransitioningRef.current = true;
-
-    if (target === 'hero' || target === 'home') {
-      runTransition1(target);
-    } else if (target === 'about') {
-      runTransition2(target);
-    } else if (target === 'skills') {
-      runTransition3(target);
-    } else if (target === 'projects') {
-      runTransition4(target, label);
-    } else if (target === 'experience') {
-      runTransition5(target);
-    } else if (target === 'contact') {
-      runTransition6(target);
-    } else {
-      runTransition4(target, label);
-    }
-  };
 
   // ==========================================
   // TRANSITION #1: Scale & Inset Clip Wipe (Home - Color #F2b759)
   // ==========================================
-  const runTransition1 = (target) => {
+  function runTransition1(target) {
     const overlay = t1OverlayRef.current;
     const targetEl = document.querySelector(`[data-section="${target}"]`);
     const activeSectionEl = document.querySelector('[data-section]:not([hidden])');
@@ -243,7 +207,7 @@ export default function TransitionOverlay() {
   // ==========================================
   // TRANSITION #2: WebGL Value Noise Dissolve (About - Color #f2efe7)
   // ==========================================
-  const runTransition2 = (target) => {
+  function runTransition2(target) {
     const webgl = webglSceneRef.current;
     if (!webgl) {
       scrollToSection(target);
@@ -303,7 +267,7 @@ export default function TransitionOverlay() {
   // ==========================================
   // TRANSITION #3: SVG Bezier Curve Morphing (Skills - Color #8b004a)
   // ==========================================
-  const runTransition3 = (target) => {
+  function runTransition3(target) {
     const container = svgMorphContainerRef.current;
     const path = svgMorphPathRef.current;
     if (!container || !path) {
@@ -384,7 +348,7 @@ export default function TransitionOverlay() {
   // ==========================================
   // TRANSITION #4: Dynamic Title Overlay & Polygon Clip (Projects - Color #00a19b)
   // ==========================================
-  const runTransition4 = (target, label) => {
+  function runTransition4(target, label) {
     const overlay = titleOverlayRef.current;
     const titleEl = titleTextRef.current;
     if (!overlay || !titleEl) {
@@ -459,7 +423,7 @@ export default function TransitionOverlay() {
   // ==========================================
   // TRANSITION #5: GSAP Draw SVG Spiral (Experience - Same #D4A853)
   // ==========================================
-  const runTransition5 = (target) => {
+  function runTransition5(target) {
     const container = svgDrawContainerRef.current;
     const path = svgDrawPathRef.current;
     if (!container || !path) {
@@ -539,7 +503,7 @@ export default function TransitionOverlay() {
   // ==========================================
   // TRANSITION #6: Dual Clip Curtain Lift (Contact - Color #C87740)
   // ==========================================
-  const runTransition6 = (target) => {
+  function runTransition6(target) {
     const curtain = curtainOverlayRef.current;
     const targetEl = document.querySelector(`[data-section="${target}"]`);
 
@@ -594,25 +558,63 @@ export default function TransitionOverlay() {
         '<'
       );
     }
-  };
+  }
+
+  function scrollToSection(target) {
+    const el = document.querySelector(`[data-section="${target}"]`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'auto' });
+    }
+  }
+
+  function executeSectionTransition(target, label) {
+    isTransitioningRef.current = true;
+
+    if (target === 'hero' || target === 'home') {
+      runTransition1(target);
+    } else if (target === 'about') {
+      runTransition2(target);
+    } else if (target === 'skills') {
+      runTransition3(target);
+    } else if (target === 'projects') {
+      runTransition4(target, label);
+    } else if (target === 'experience') {
+      runTransition5(target);
+    } else if (target === 'contact') {
+      runTransition6(target);
+    } else {
+      runTransition4(target, label);
+    }
+  }
+
+  useEffect(() => {
+    const handleTransitionEvent = (e) => {
+      const { target, label } = e.detail || {};
+      if (!target || isTransitioningRef.current) return;
+      executeSectionTransition(target, label || target);
+    };
+
+    window.addEventListener('trigger-section-transition', handleTransitionEvent);
+    return () => window.removeEventListener('trigger-section-transition', handleTransitionEvent);
+  }, []);
 
   return (
     <div ref={containerRef} className="transition-system-root">
-      {/* TRANSITION #1: Inset Clip Veil Overlay (Home - #F2b759) */}
+      {/* TRANSITION #1: Inset Clip Veil Overlay (Home - Amber) */}
       <div
         ref={t1OverlayRef}
-        className="fixed inset-0 z-[100] bg-[#F2b759] pointer-events-none opacity-0 invisible shadow-2xl"
+        className="fixed inset-0 z-[100] bg-[#D4A853] pointer-events-none opacity-0 invisible shadow-2xl"
         style={{ willChange: 'clip-path' }}
       />
 
-      {/* TRANSITION #2: WebGL Canvas Overlay (About - #f2efe7) */}
+      {/* TRANSITION #2: WebGL Canvas Overlay (About - Dark Evergreen) */}
       <canvas
         ref={webglCanvasRef}
         id="transition-webgl-canvas"
         className="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible"
       />
 
-      {/* TRANSITION #3: SVG Bezier Curve Morph Overlay (Skills - #8b004a) */}
+      {/* TRANSITION #3: SVG Bezier Curve Morph Overlay (Skills - Evergreen) */}
       <div
         ref={svgMorphContainerRef}
         className="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible"
@@ -624,16 +626,16 @@ export default function TransitionOverlay() {
         >
           <path
             ref={svgMorphPathRef}
-            fill="#8b004a"
+            fill="#1F3A34"
             d="M 0 100 V 100 Q 50 100 100 100 V 100 z"
           />
         </svg>
       </div>
 
-      {/* TRANSITION #4: Dynamic Title Overlay & Clip Polygon (Projects - #00a19b) */}
+      {/* TRANSITION #4: Dynamic Title Overlay & Clip Polygon (Projects - Moss) */}
       <div
         ref={titleOverlayRef}
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#00a19b] backdrop-blur-xl border-y-2 border-teal-200/50 pointer-events-none opacity-0 invisible overflow-hidden shadow-2xl"
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#5A7D6E] backdrop-blur-xl border-y-2 border-emerald-200/30 pointer-events-none opacity-0 invisible overflow-hidden shadow-2xl"
         style={{ willChange: 'clip-path' }}
       >
         <div className="flex flex-col items-center justify-center p-6 text-center">
@@ -650,7 +652,7 @@ export default function TransitionOverlay() {
         </div>
       </div>
 
-      {/* TRANSITION #5: GSAP Draw SVG Spiral Overlay (Experience - Same #D4A853) */}
+      {/* TRANSITION #5: GSAP Draw SVG Spiral Overlay (Experience - Amber) */}
       <div
         ref={svgDrawContainerRef}
         className="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible overflow-hidden flex items-center justify-center bg-dark/40 backdrop-blur-sm"
@@ -672,10 +674,10 @@ export default function TransitionOverlay() {
         </svg>
       </div>
 
-      {/* TRANSITION #6: Curtain Overlay for Dual Clip Lift (Contact - #C87740) */}
+      {/* TRANSITION #6: Curtain Overlay for Dual Clip Lift (Contact - Evergreen) */}
       <div
         ref={curtainOverlayRef}
-        className="fixed inset-0 z-[100] bg-[#C87740] backdrop-blur-xl border-t-2 border-orange-200/50 pointer-events-none opacity-0 invisible shadow-2xl"
+        className="fixed inset-0 z-[100] bg-[#1F3A34] backdrop-blur-xl border-t-2 border-emerald-200/30 pointer-events-none opacity-0 invisible shadow-2xl"
         style={{ willChange: 'clip-path' }}
       />
     </div>

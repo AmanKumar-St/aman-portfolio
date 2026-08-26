@@ -31,14 +31,14 @@ export const personalData = {
     {
       role: "Cybersecurity Intern",
       company: "Acmegrade",
-      period: "",
-      description: "Hands-on experience in network security, vulnerability assessment, and security operations."
+      period: "2024",
+      description: "Hands-on experience in network security, vulnerability assessment, penetration testing, and security operations."
     },
     {
       role: "B.Tech Computer Science",
       company: "Punjab Technical University",
-      period: "",
-      description: "Comprehensive education in computer science with focus on AI, ML, and cybersecurity."
+      period: "2021 — 2025",
+      description: "Comprehensive education in computer science with focus on AI, ML algorithms, and cybersecurity."
     }
   ],
   contact: {

@@ -7,16 +7,19 @@ export default function ProfileLogo({ section }) {
 
   useEffect(() => {
     if (section !== animatedSection) {
-      // Trigger exit animation
-      setAnimationState('exit');
+      const exitTimer = setTimeout(() => {
+        setAnimationState('exit');
+      }, 0);
 
-      // After exit animation completes, update section and trigger enter
       const timeout = setTimeout(() => {
         setAnimatedSection(section);
         setAnimationState('enter');
-      }, 400); // Match CSS animation duration
+      }, 400);
 
-      return () => clearTimeout(timeout);
+      return () => {
+        clearTimeout(exitTimer);
+        clearTimeout(timeout);
+      };
     }
   }, [section, animatedSection]);
 

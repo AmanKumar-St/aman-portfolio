@@ -7,7 +7,7 @@
   --color-moss: #5A7D6E;
   --color-dark: #0A3625;
   --color-deep: #060d0a;
-  --font-heading: 'Playfair Display', serif;
+  --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 
@@ -19,9 +19,8 @@
 
 html {
   scroll-behavior: smooth;
-  /* Whole page advances one section per scroll wheel. Switch to `proximity`
-     for a gentler feel that only snaps when you're already near a section. */
-  scroll-snap-type: y mandatory;
+  /* Soft snapping when near section boundaries to avoid aggressive wheel locking */
+  scroll-snap-type: y proximity;
 }
 
 /* Each section is a snap point at the top of the viewport. */
@@ -79,11 +78,21 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
   .radial-nav-item {
     transition: none;
   }
 
   .nav-enter {
     animation: none;
+  }
+  [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

@@ -36,11 +36,11 @@ export default function Hero() {
   return (
     <section
       data-section="hero"
-      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4"
+      className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 sm:px-8 lg:px-12 py-20 md:py-28 lg:py-32"
     >
       <div className="text-center">
         <div className="mb-6 inline-block">
-          <span className="font-body text-xs uppercase tracking-[0.3em] text-moss">
+          <span className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-amber">
             Portfolio
           </span>
         </div>
@@ -52,16 +52,16 @@ export default function Hero() {
         </h1>
         <p
           ref={subtitleRef}
-          className="mt-4 font-body text-lg text-frost/60 md:text-xl"
+          className="mt-4 font-body text-lg text-frost/90 md:text-xl font-medium"
         >
           {personalData.title}
         </p>
         <div className="mt-8 flex items-center justify-center gap-4">
-          <span className="h-px w-8 bg-amber/40" />
-          <span className="font-body text-xs uppercase tracking-[0.2em] text-amber/60">
+          <span className="h-px w-8 bg-amber/60" />
+          <span className="font-body text-xs uppercase tracking-[0.2em] text-amber font-semibold">
             Scroll to explore
           </span>
-          <span className="h-px w-8 bg-amber/40" />
+          <span className="h-px w-8 bg-amber/60" />
         </div>
       </div>
 
@@ -70,7 +70,7 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute bottom-10 flex flex-col items-center gap-2"
       >
-        <span className="font-body text-xs text-frost/30">↓</span>
+        <span className="font-body text-xs text-frost/70 font-semibold">↓</span>
       </div>
     </section>
   );
