@@ -64,7 +64,7 @@ export default function Experience() {
       data-section="experience"
       className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-16 md:py-24"
     >
-      <div className="mx-auto w-full max-w-3xl">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="mb-16 text-center">
           <h2 className="font-heading text-3xl font-semibold text-frost md:text-4xl">
             My <span className="text-amber">Journey</span>
@@ -76,11 +76,11 @@ export default function Experience() {
           {/* Vertical timeline line */}
           <div
             ref={lineRef}
-            className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-amber/50 via-moss/40 to-transparent md:left-1/2 md:-translate-x-px"
+            className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-amber/50 via-moss/40 to-transparent md:left-1/2 md:-translate-x-1/2"
             style={prefersReduced ? {} : { transform: 'scaleY(0)', transformOrigin: 'top center' }}
           />
 
-          <div className="space-y-16">
+          <div className="space-y-20 md:space-y-24">
             {personalData.experience.map((exp, i) => {
               const isLeft = i % 2 === 0;
               const IconComponent = getRoleIcon(exp.role);
@@ -89,42 +89,43 @@ export default function Experience() {
                 <div
                   key={i}
                   ref={(el) => (itemsRef.current[i] = el)}
-                  className="relative flex items-start"
+                  className="relative grid grid-cols-1 items-start md:grid-cols-[1fr_80px_1fr]"
                   style={initialStyle}
                 >
-                  {/* Mobile: left dot + icon */}
-                  <div className="absolute left-4 top-1 flex h-6 w-6 -translate-x-3 items-center justify-center rounded-full border-2 border-amber bg-dark md:hidden">
-                    <IconComponent size={12} weight="fill" aria-hidden="true" className="text-amber" />
+                  {/* Mobile Timeline Icon Marker */}
+                  <div className="absolute left-5 top-1 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border-2 border-amber bg-dark z-10 md:hidden">
+                    <IconComponent size={14} weight="fill" aria-hidden="true" className="text-amber" />
                   </div>
 
-                  {/* Desktop: center dot + icon */}
-                  <div className="absolute left-1/2 top-1 hidden h-6 w-6 -translate-x-3 items-center justify-center rounded-full border-2 border-amber bg-dark md:flex">
-                    <IconComponent size={12} weight="fill" aria-hidden="true" className="text-amber" />
-                  </div>
-
+                  {/* Content Box */}
                   <div
-                    className={`flex w-full flex-col gap-2 ${
-                      isLeft ? 'md:pr-14 md:text-right' : 'md:pl-14'
-                    } md:w-1/2`}
-                    style={{
-                      marginLeft: isLeft ? '2rem' : 'auto',
-                      paddingLeft: isLeft ? '1.5rem' : '2rem'
-                    }}
+                    className={`flex flex-col gap-2 pl-12 md:pl-0 ${
+                      isLeft
+                        ? 'md:col-start-1 md:col-end-2 md:row-start-1 md:pr-8 md:text-right md:items-end'
+                        : 'md:col-start-3 md:col-end-4 md:row-start-1 md:pl-8 md:text-left md:items-start'
+                    }`}
                   >
                     <span className="font-body text-xs uppercase tracking-wider text-amber/80">
                       {exp.role}
                     </span>
-                    <h3 className="font-heading text-xl font-semibold text-frost">
+                    <h3 className="font-heading text-xl font-semibold text-frost md:text-2xl leading-snug">
                       {exp.company}
                     </h3>
                     {exp.period && (
                       <span className="font-mono text-xs text-moss/80">{exp.period}</span>
                     )}
                     {exp.description && (
-                      <p className="font-body text-sm leading-relaxed text-frost/70">
+                      <p className={`font-body text-sm leading-relaxed text-frost/70 max-w-md ${isLeft ? 'md:ml-auto' : 'md:mr-auto'}`}>
                         {exp.description}
                       </p>
                     )}
+                  </div>
+
+                  {/* Desktop Timeline Icon Marker */}
+                  <div className="hidden md:flex md:col-start-2 md:col-end-3 md:row-start-1 justify-center items-start pt-1 z-10">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-amber bg-dark shadow-sm">
+                      <IconComponent size={14} weight="fill" aria-hidden="true" className="text-amber" />
+                    </div>
                   </div>
                 </div>
               );

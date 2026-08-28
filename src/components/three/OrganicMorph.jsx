@@ -11,7 +11,7 @@ export default function OrganicMorph({ position = [0, 0, 0], scale = 1, color = 
   }, [geometry]);
 
   useFrame((state) => {
-    if (!mesh.current) return;
+    if (!mesh.current || !mesh.current.geometry || !mesh.current.geometry.attributes?.position) return;
     const pos = mesh.current.geometry.attributes.position.array;
     const time = state.clock.elapsedTime * speed;
 

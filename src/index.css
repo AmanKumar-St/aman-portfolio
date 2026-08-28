@@ -32,7 +32,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-dark);
+  background: #05070a;
   color: var(--color-frost);
   overflow-x: hidden;
 }
