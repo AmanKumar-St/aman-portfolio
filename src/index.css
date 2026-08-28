@@ -20,9 +20,16 @@
 
 html {
   scroll-behavior: smooth;
-  /* proximity = snaps only when close to a snap point,
-     avoids the trackpad / wheel-interception conflict. */
+  /* proximity = snaps only when close to a snap point on desktop,
+     avoids trackpad scroll conflicts. */
   scroll-snap-type: y proximity;
+}
+
+@media (max-width: 767px) {
+  html {
+    /* Disable scroll snapping on mobile to prevent layout clipping and content truncation */
+    scroll-snap-type: none;
+  }
 }
 
 /* Each section is a snap point at the top of the viewport. */

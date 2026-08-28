@@ -51,20 +51,7 @@ export default function Navbar({ section }) {
     return true;
   };
 
-  useEffect(() => {
-    const el = dialRef.current;
-    if (!el) return;
-    const onWheel = (e) => {
-      const moved = goToSection(e.deltaY > 0 ? 1 : -1);
-      if (!moved) return;
-      e.preventDefault();
-      const now = performance.now();
-      if (now - lastWheel.current < WHEEL_COOLDOWN) return;
-      lastWheel.current = now;
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
-  }, []);
+
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
