@@ -171,7 +171,7 @@ export default function Contact() {
                 name="name"
                 required
                 autoComplete="name"
-                placeholder="John Doe"
+                placeholder="Enter Your Name"
                 className="w-full rounded-xl border border-amber/30 bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/50 transition-all duration-200"
               />
             </div>
@@ -188,7 +188,7 @@ export default function Contact() {
                 name="email"
                 required
                 autoComplete="email"
-                placeholder="john@example.com"
+                placeholder="Enter Your Email"
                 className="w-full rounded-xl border border-amber/30 bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/50 transition-all duration-200"
               />
             </div>
@@ -206,7 +206,7 @@ export default function Contact() {
               name="message"
               required
               rows={4}
-              placeholder="Tell me about your project or inquiry..."
+              placeholder="Lets Connect..."
               className="w-full rounded-xl border border-amber/30 bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/50 transition-all duration-200 resize-none"
             />
           </div>

@@ -33,9 +33,9 @@ export default function Skills() {
             gsap.to(card, {
               opacity: 1,
               y: 0,
-              duration: 0.8,
-              ease: 'power3.out',
-              delay: i * 0.15
+              duration: 0.5,
+              ease: 'bounce',
+              delay: i * 0.05
             });
           },
           once: true

@@ -90,7 +90,7 @@ export const personalData = {
 
   ],
   contact: {
-    email: "[EMAIL_ADDRESS]",
+    email: "apk355194@gmail.com",
     location: "Resides in Sonpur, Bihar",
     availability: "Open for AI/ML & Engineering Roles",
     github: "https://github.com/AmanKumar-St",
