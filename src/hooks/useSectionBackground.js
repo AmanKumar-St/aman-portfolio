@@ -11,7 +11,8 @@ const SECTION_COLORS = [
   '#F2EFE7', // 2 - Skills (cream / off-white)
   '#E4DDD3', // 3 - Projects (linen / sand)
   '#0A3625', // 4 - Experience (default dark evergreen)
-  '#2E1F26', // 5 - Contact (deep plum / wine)
+  '#0A3625', // 5 - Certifications (dark evergreen)
+  '#2E1F26', // 6 - Contact (deep plum / wine)
 ];
 
 /**
