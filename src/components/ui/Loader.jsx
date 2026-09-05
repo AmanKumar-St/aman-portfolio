@@ -114,7 +114,7 @@ export default function Loader({ onComplete }) {
         <path
           ref={pathRef}
           d="M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z"
-          fill="#0a1411"
+          fill="#0a3625"
         />
       </svg>
 
