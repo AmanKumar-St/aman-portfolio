@@ -3,6 +3,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { personalData } from '../../data/content';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import ProfileCard from '../ui/ProfileCard';
+import heroImage from '../../assets/Profile_pic-bg.png';
+import { triggerSectionTransition } from '../../utils/navigation';
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -42,6 +45,10 @@ export default function About() {
   const initialStyle = prefersReduced ? {} : { opacity: 0 };
   const avatarInitialStyle = prefersReduced ? {} : { opacity: 0, transform: 'scale(0.85)' };
 
+  const handleContactClick = () => {
+    triggerSectionTransition('contact', 'Contact');
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -51,16 +58,25 @@ export default function About() {
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-12 md:flex-row">
         <div
           ref={avatarRef}
-          className="h-48 w-48 flex-shrink-0 md:h-64 md:w-64"
+          className="w-full flex-shrink-0 flex justify-center max-w-[320px] sm:max-w-[340px] md:max-w-[360px]"
           style={avatarInitialStyle}
         >
-          <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-amber/40 bg-evergreen/50 shadow-lg shadow-amber/10">
-            <span className="font-heading text-5xl font-bold text-amber md:text-6xl">
-              {personalData.name.split(' ').map(n => n[0]).join('')}
-            </span>
-          </div>
+          <ProfileCard
+            name={personalData.name}
+            title={personalData.title}
+            handle="aman"
+            status="Online"
+            contactText="Contact Me"
+            avatarUrl={heroImage}
+            showUserInfo={true}
+            enableTilt={!prefersReduced}
+            enableMobileTilt={false}
+            onContactClick={handleContactClick}
+            behindGlowEnabled={true}
+            innerGradient="linear-gradient(145deg, rgba(10, 54, 37, 0.85) 0%, rgba(212, 168, 83, 0.25) 100%)"
+          />
         </div>
-        <div ref={textRef} style={initialStyle}>
+        <div ref={textRef} style={initialStyle} className="flex-1">
           <h2 className="font-heading text-3xl font-semibold text-frost md:text-4xl">
             About <span className="text-amber">Me</span>
           </h2>
@@ -84,3 +100,4 @@ export default function About() {
     </section>
   );
 }
+
