@@ -13,7 +13,6 @@
 }
 
 * {
-  
   padding: 0 rem;
   box-sizing: border-box;
 }
@@ -77,6 +76,7 @@ body {
   from {
     transform: translate(var(--sx, 0), var(--sy, 0));
   }
+
   to {
     transform: translate(0, 0);
   }
@@ -91,6 +91,7 @@ body {
   .radial-nav-item {
     transition: none;
   }
+
   .nav-enter {
     animation: none;
   }
@@ -103,4 +104,3 @@ body {
     transition: none !important;
   }
 }
-

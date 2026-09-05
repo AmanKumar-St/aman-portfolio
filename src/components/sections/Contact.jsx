@@ -9,6 +9,8 @@ import {
   PaperPlaneTilt,
   User,
   ChatText,
+  CircleNotch,
+  WarningCircle,
 } from '@phosphor-icons/react';
 import { personalData } from '../../data/content';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -18,8 +20,17 @@ export default function Contact() {
   const titleRef = useRef(null);
   const cardsRef = useRef([]);
   const formRef = useRef(null);
-  const [submitted, setSubmitted] = useState(false);
   const prefersReduced = useReducedMotion();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+    _honeypot: ''
+  });
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+  const [serverError, setServerError] = useState('');
 
   useEffect(() => {
     if (prefersReduced) return;
@@ -73,10 +84,96 @@ export default function Contact() {
     return () => ctx.revert();
   }, [prefersReduced]);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+    if (status === 'error') {
+      setServerError('');
+    }
+    if (status === 'success') {
+      setStatus('idle');
+    }
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName) {
+      errors.name = 'Your name is required';
+    } else if (trimmedName.length > 100) {
+      errors.name = 'Name must be 100 characters or less';
+    }
+
+    if (!trimmedEmail) {
+      errors.email = 'Your email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      errors.email = 'Please enter a valid email address';
+    } else if (trimmedEmail.length > 254) {
+      errors.email = 'Email must be 254 characters or less';
+    }
+
+    if (!trimmedMessage) {
+      errors.message = 'A message is required';
+    } else if (trimmedMessage.length > 5000) {
+      errors.message = 'Message must be 5000 characters or less';
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    if (status === 'sending' || status === 'success') return;
+
+    // Honeypot check: reject spam silently
+    if (formData._honeypot && formData._honeypot.trim() !== '') {
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '', _honeypot: '' });
+      setFieldErrors({});
+      setServerError('');
+      return;
+    }
+
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setFieldErrors({});
+    setServerError('');
+    setStatus('sending');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+          _honeypot: formData._honeypot
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Couldn't send your message. Please try again or email me directly.");
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '', _honeypot: '' });
+    } catch (err) {
+      setStatus('error');
+      setServerError(err.message || "Couldn't send your message. Please try again or email me directly.");
+    }
   };
 
   const contactItems = [
@@ -157,6 +254,20 @@ export default function Contact() {
           style={formInitial}
           noValidate
         >
+          {/* Honeypot Spam Protection Field */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="contact-honeypot">Leave this blank</label>
+            <input
+              type="text"
+              id="contact-honeypot"
+              name="_honeypot"
+              tabIndex={-1}
+              value={formData._honeypot}
+              onChange={handleChange}
+              autoComplete="off"
+            />
+          </div>
+
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label htmlFor="contact-name" className="block font-body text-xs uppercase tracking-wider text-amber mb-2">
@@ -171,9 +282,18 @@ export default function Contact() {
                 name="name"
                 required
                 autoComplete="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Enter Your Name"
-                className="w-full rounded-xl border border-amber/30 bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/50 transition-all duration-200"
+                className={`w-full rounded-xl border ${
+                  fieldErrors.name ? 'border-red-500/80 focus:ring-red-500/50' : 'border-amber/30 focus:border-amber focus:ring-amber/50'
+                } bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:outline-none focus:ring-2 transition-all duration-200`}
               />
+              {fieldErrors.name && (
+                <p className="mt-1.5 font-body text-xs text-red-400" role="alert">
+                  {fieldErrors.name}
+                </p>
+              )}
             </div>
             <div>
               <label htmlFor="contact-email" className="block font-body text-xs uppercase tracking-wider text-amber mb-2">
@@ -188,9 +308,18 @@ export default function Contact() {
                 name="email"
                 required
                 autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter Your Email"
-                className="w-full rounded-xl border border-amber/30 bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/50 transition-all duration-200"
+                className={`w-full rounded-xl border ${
+                  fieldErrors.email ? 'border-red-500/80 focus:ring-red-500/50' : 'border-amber/30 focus:border-amber focus:ring-amber/50'
+                } bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:outline-none focus:ring-2 transition-all duration-200`}
               />
+              {fieldErrors.email && (
+                <p className="mt-1.5 font-body text-xs text-red-400" role="alert">
+                  {fieldErrors.email}
+                </p>
+              )}
             </div>
           </div>
 
@@ -206,20 +335,41 @@ export default function Contact() {
               name="message"
               required
               rows={4}
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Lets Connect..."
-              className="w-full rounded-xl border border-amber/30 bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/50 transition-all duration-200 resize-none"
+              className={`w-full rounded-xl border ${
+                fieldErrors.message ? 'border-red-500/80 focus:ring-red-500/50' : 'border-amber/30 focus:border-amber focus:ring-amber/50'
+              } bg-dark/60 px-4 py-3 font-body text-sm text-frost placeholder:text-frost/40 focus:outline-none focus:ring-2 transition-all duration-200 resize-none`}
             />
+            {fieldErrors.message && (
+              <p className="mt-1.5 font-body text-xs text-red-400" role="alert">
+                {fieldErrors.message}
+              </p>
+            )}
           </div>
+
+          {serverError && (
+            <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-3.5 text-xs text-red-300 flex items-center gap-2" role="alert">
+              <WarningCircle size={18} className="shrink-0 text-red-400" />
+              <span>{serverError}</span>
+            </div>
+          )}
 
           <button
             type="submit"
-            disabled={submitted}
+            disabled={status === 'sending' || status === 'success'}
             className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-amber/60 bg-amber/20 py-3.5 font-heading text-sm font-semibold uppercase tracking-widest text-amber transition-all duration-300 hover:bg-amber hover:text-dark focus:outline-none focus:ring-2 focus:ring-amber shadow-lg disabled:opacity-80 disabled:cursor-not-allowed"
           >
-            {submitted ? (
+            {status === 'success' ? (
               <>
                 <CheckCircle size={18} weight="fill" aria-hidden="true" />
                 Message Sent!
+              </>
+            ) : status === 'sending' ? (
+              <>
+                <CircleNotch size={18} className="animate-spin" aria-hidden="true" />
+                Sending...
               </>
             ) : (
               <>
@@ -233,3 +383,4 @@ export default function Contact() {
     </section>
   );
 }
+
