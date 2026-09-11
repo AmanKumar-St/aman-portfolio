@@ -1,0 +1,1176 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 120,
+  "totalBatches": 8,
+  "exportsByPath": {
+    ".agents/skills/understand-domain/extract-domain-context.py": [
+      "resolve_ua_dir",
+      "parse_gitignore",
+      "is_ignored",
+      "scan_file_tree",
+      "detect_entry_points",
+      "extract_file_signatures",
+      "extract_metadata",
+      "_truncate_to_fit",
+      "main"
+    ],
+    ".agents/skills/understand-figma/figma-merge.mjs": [],
+    ".agents/skills/understand-figma/figma-scan.mjs": [],
+    ".agents/skills/understand-knowledge/merge-knowledge-graph.py": [
+      "resolve_ua_dir",
+      "_find_markdown_case_insensitive",
+      "normalize_node_type",
+      "normalize_edge_type",
+      "normalize_entity_name",
+      "merge",
+      "main"
+    ],
+    ".agents/skills/understand-knowledge/parse-knowledge-base.py": [
+      "resolve_ua_dir",
+      "find_markdown_case_insensitive",
+      "detect_format",
+      "extract_frontmatter",
+      "extract_wikilinks",
+      "extract_headings",
+      "extract_code_blocks",
+      "extract_first_paragraph",
+      "extract_h1",
+      "parse_index",
+      "parse_log",
+      "build_name_to_stem_map",
+      "resolve_wikilink",
+      "parse_wiki",
+      "main"
+    ],
+    ".agents/skills/understand/build-fingerprints.mjs": [],
+    ".agents/skills/understand/compute-batches.mjs": [],
+    ".agents/skills/understand/extract-import-map.mjs": [
+      "resolveTsJsImport",
+      "resolvePythonImport",
+      "resolveGoImport",
+      "resolveJavaImport",
+      "resolveKotlinImport",
+      "resolveScalaImport",
+      "resolveCSharpImport",
+      "resolveSwiftImport",
+      "resolveRubyImport",
+      "resolvePhpImport",
+      "resolveRustImport",
+      "resolveCppImport"
+    ],
+    ".agents/skills/understand/extract-structure-result.mjs": [
+      "analyzeFileWithOutcomes",
+      "buildResult"
+    ],
+    ".agents/skills/understand/extract-structure.mjs": [
+      "analyzeFileWithOutcomes",
+      "buildResult"
+    ],
+    ".agents/skills/understand/finalize-incremental.mjs": [
+      "assignLayers",
+      "commonParentDepth",
+      "hasAnalyzedFileCoverage",
+      "normalizeTour",
+      "refreshGraphImports"
+    ],
+    ".agents/skills/understand/generate-ignore.mjs": [],
+    ".agents/skills/understand/merge-batch-graphs.py": [
+      "resolve_ua_dir",
+      "normalize_direction",
+      "_num",
+      "parse_batch_filename",
+      "batch_sort_key",
+      "load_batch",
+      "classify_id_fix",
+      "normalize_node_id",
+      "normalize_complexity",
+      "_path_segments",
+      "_basename",
+      "is_test_path",
+      "_strip_test_infix",
+      "_join",
+      "_add_unique",
+      "_js_ts_sibling_candidates",
+      "production_candidates",
+      "_file_node_path",
+      "_swap_tested_by_in_place",
+      "_ensure_tested_tag",
+      "link_tests",
+      "merge_and_normalize",
+      "build_whole_file_node_index",
+      "recover_imports_from_scan",
+      "main"
+    ],
+    ".agents/skills/understand/merge-subdomain-graphs.py": [
+      "resolve_ua_dir",
+      "_num",
+      "load_graph",
+      "merge_graphs",
+      "load_pending_structural_edges",
+      "write_merge_report",
+      "main"
+    ],
+    ".agents/skills/understand/prepare-incremental.mjs": [
+      "isGeneratedArtifact",
+      "isImportResolverConfig",
+      "normalizeRelativePath",
+      "relevantWorktreeChanges",
+      "parseNameStatusZ",
+      "pruneExistingGraph"
+    ],
+    ".agents/skills/understand/scan-project.mjs": [
+      "detectLanguage",
+      "detectCategory",
+      "estimateComplexity"
+    ],
+    "api/contact.js": [
+      "handler"
+    ],
+    "eslint.config.js": [],
+    "src/App.jsx": [],
+    "src/assets/lanyard/card.glb": [],
+    "src/components/scene/TempleArchitecture.jsx": [
+      "TempleArchitecture"
+    ],
+    "src/components/scene/TempleAtmosphere.jsx": [
+      "TempleAtmosphere"
+    ],
+    "src/components/scene/TempleForeground.jsx": [
+      "TempleForeground"
+    ],
+    "src/components/scene/TempleLighting.jsx": [
+      "TempleLighting"
+    ],
+    "src/components/scene/TempleNightBackground.jsx": [
+      "TempleNightBackground"
+    ],
+    "src/components/scene/TempleNightEnvironment.jsx": [
+      "TempleNightEnvironment"
+    ],
+    "src/components/scene/TempleSky.jsx": [
+      "TempleSky"
+    ],
+    "src/components/scene/TempleTerrain.jsx": [
+      "TempleTerrain"
+    ],
+    "src/components/scene/templeNightRenderer.js": [
+      "createTempleNightRenderer"
+    ],
+    "src/components/sections/About.jsx": [
+      "About"
+    ],
+    "src/components/sections/Certifications.jsx": [
+      "Certifications"
+    ],
+    "src/components/sections/Contact.jsx": [
+      "Contact"
+    ],
+    "src/components/sections/Experience.jsx": [
+      "Experience"
+    ],
+    "src/components/sections/Hero.jsx": [
+      "Hero"
+    ],
+    "src/components/sections/Projects.jsx": [
+      "Projects"
+    ],
+    "src/components/sections/Skills.jsx": [
+      "Skills"
+    ],
+    "src/components/three/SceneCanvas.jsx": [
+      "SceneCanvas"
+    ],
+    "src/components/three/SceneManager.jsx": [
+      "SceneManager"
+    ],
+    "src/components/three/SkillCell.jsx": [
+      "SkillCell"
+    ],
+    "src/components/ui/CertificationSlider.jsx": [
+      "CertificationSlider"
+    ],
+    "src/components/ui/FloatingNav.jsx": [
+      "FloatingNav"
+    ],
+    "src/components/ui/Footer.jsx": [
+      "Footer"
+    ],
+    "src/components/ui/Loader.jsx": [
+      "Loader"
+    ],
+    "src/components/ui/MorphSlider.jsx": [
+      "MorphSlider"
+    ],
+    "src/components/ui/Navbar.jsx": [
+      "Navbar"
+    ],
+    "src/components/ui/ProfileCard.jsx": [],
+    "src/components/ui/ProfileLogo.jsx": [
+      "ProfileLogo"
+    ],
+    "src/components/ui/StaggeredMenu.jsx": [
+      "StaggeredMenu"
+    ],
+    "src/components/ui/TransitionOverlay.jsx": [
+      "TransitionOverlay"
+    ],
+    "src/components/ui/hamburger-nav.jsx": [
+      "HamburgerNav"
+    ],
+    "src/constants/colors.js": [
+      "COLORS"
+    ],
+    "src/constants/nav.js": [
+      "NAV_ITEMS"
+    ],
+    "src/constants/scene.js": [
+      "CAMERA_SECTIONS",
+      "PARTICLE_COUNT",
+      "PARTICLE_BOUNDARY",
+      "PARTICLE_RADIUS_MIN",
+      "PARTICLE_RADIUS_MAX",
+      "VINE_SEGMENTS",
+      "VINE_LEAF_INTERVAL",
+      "VINE_TUBE_SEGMENTS",
+      "VINE_TUBE_RADIUS",
+      "VINE_TUBE_RADIAL_SEGMENTS",
+      "CAMERA_DEFAULT_Z",
+      "CAMERA_FOV",
+      "CAMERA_SMOOTH_FACTOR"
+    ],
+    "src/data/certifications.js": [
+      "certifications"
+    ],
+    "src/data/content.js": [
+      "personalData",
+      "skillColors"
+    ],
+    "src/hooks/useMousePosition.js": [
+      "useMousePosition"
+    ],
+    "src/hooks/useReducedMotion.js": [
+      "useReducedMotion"
+    ],
+    "src/hooks/useScrollProgress.js": [
+      "useScrollProgress"
+    ],
+    "src/hooks/useSectionBackground.js": [
+      "useSectionBackground"
+    ],
+    "src/main.jsx": [],
+    "src/utils/navigation.js": [
+      "triggerSectionTransition"
+    ],
+    "src/utils/random.js": [
+      "createSeededRandom"
+    ],
+    "vite.config.js": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": ".agents/skills/understand/frameworks/django.md",
+          "language": "markdown",
+          "sizeLines": 67,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/express.md",
+          "language": "markdown",
+          "sizeLines": 57,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/fastapi.md",
+          "language": "markdown",
+          "sizeLines": 58,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/flask.md",
+          "language": "markdown",
+          "sizeLines": 53,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/gin.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/nextjs.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/rails.md",
+          "language": "markdown",
+          "sizeLines": 65,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/react.md",
+          "language": "markdown",
+          "sizeLines": 55,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/spring.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/frameworks/vue.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agents/skills/understand/frameworks/django.md": [],
+        ".agents/skills/understand/frameworks/express.md": [],
+        ".agents/skills/understand/frameworks/fastapi.md": [],
+        ".agents/skills/understand/frameworks/flask.md": [],
+        ".agents/skills/understand/frameworks/gin.md": [],
+        ".agents/skills/understand/frameworks/nextjs.md": [],
+        ".agents/skills/understand/frameworks/rails.md": [],
+        ".agents/skills/understand/frameworks/react.md": [],
+        ".agents/skills/understand/frameworks/spring.md": [],
+        ".agents/skills/understand/frameworks/vue.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": ".agents/skills/understand/languages/cpp.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/csharp.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/css.md",
+          "language": "markdown",
+          "sizeLines": 37,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/dockerfile.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/go.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/graphql.md",
+          "language": "markdown",
+          "sizeLines": 35,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/html.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/java.md",
+          "language": "markdown",
+          "sizeLines": 45,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/javascript.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/json.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/kotlin.md",
+          "language": "markdown",
+          "sizeLines": 45,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/markdown.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/php.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/protobuf.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/python.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/ruby.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/rust.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/scala.md",
+          "language": "markdown",
+          "sizeLines": 51,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/shell.md",
+          "language": "markdown",
+          "sizeLines": 35,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/sql.md",
+          "language": "markdown",
+          "sizeLines": 36,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agents/skills/understand/languages/cpp.md": [],
+        ".agents/skills/understand/languages/csharp.md": [],
+        ".agents/skills/understand/languages/css.md": [],
+        ".agents/skills/understand/languages/dockerfile.md": [],
+        ".agents/skills/understand/languages/go.md": [],
+        ".agents/skills/understand/languages/graphql.md": [],
+        ".agents/skills/understand/languages/html.md": [],
+        ".agents/skills/understand/languages/java.md": [],
+        ".agents/skills/understand/languages/javascript.md": [],
+        ".agents/skills/understand/languages/json.md": [],
+        ".agents/skills/understand/languages/kotlin.md": [],
+        ".agents/skills/understand/languages/markdown.md": [],
+        ".agents/skills/understand/languages/php.md": [],
+        ".agents/skills/understand/languages/protobuf.md": [],
+        ".agents/skills/understand/languages/python.md": [],
+        ".agents/skills/understand/languages/ruby.md": [],
+        ".agents/skills/understand/languages/rust.md": [],
+        ".agents/skills/understand/languages/scala.md": [],
+        ".agents/skills/understand/languages/shell.md": [],
+        ".agents/skills/understand/languages/sql.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": ".agents/skills/understand/languages/swift.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/terraform.md",
+          "language": "markdown",
+          "sizeLines": 38,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/typescript.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/languages/yaml.md",
+          "language": "markdown",
+          "sizeLines": 35,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agents/skills/understand/languages/swift.md": [],
+        ".agents/skills/understand/languages/terraform.md": [],
+        ".agents/skills/understand/languages/typescript.md": [],
+        ".agents/skills/understand/languages/yaml.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": ".agents/skills/understand/locales/en.md",
+          "language": "markdown",
+          "sizeLines": 43,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/locales/ja.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/locales/ko.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/locales/ru.md",
+          "language": "markdown",
+          "sizeLines": 49,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/locales/zh-TW.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/locales/zh.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agents/skills/understand/locales/en.md": [],
+        ".agents/skills/understand/locales/ja.md": [],
+        ".agents/skills/understand/locales/ko.md": [],
+        ".agents/skills/understand/locales/ru.md": [],
+        ".agents/skills/understand/locales/zh-TW.md": [],
+        ".agents/skills/understand/locales/zh.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": ".env.example",
+          "language": "config",
+          "sizeLines": 2,
+          "fileCategory": "config"
+        },
+        {
+          "path": "Portfolio.md",
+          "language": "markdown",
+          "sizeLines": 112,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 412,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "index.html",
+          "language": "html",
+          "sizeLines": 21,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 39,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        ".env.example": [],
+        "Portfolio.md": [],
+        "README.md": [],
+        "index.html": [],
+        "package.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": ".agents/skills/understand-chat/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 70,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-dashboard/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 155,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-diff/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 85,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-domain/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 160,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-domain/extract-domain-context.py",
+          "language": "python",
+          "sizeLines": 435,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand-explain/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 73,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-figma/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 69,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-figma/figma-merge.mjs",
+          "language": "javascript",
+          "sizeLines": 43,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand-figma/figma-scan.mjs",
+          "language": "javascript",
+          "sizeLines": 105,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand-knowledge/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 137,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand-knowledge/merge-knowledge-graph.py",
+          "language": "python",
+          "sizeLines": 426,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand-knowledge/parse-knowledge-base.py",
+          "language": "python",
+          "sizeLines": 563,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand-onboard/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 70,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 904,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agents/skills/understand/build-fingerprints.mjs",
+          "language": "javascript",
+          "sizeLines": 102,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/compute-batches.mjs",
+          "language": "javascript",
+          "sizeLines": 687,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/extract-import-map.mjs",
+          "language": "javascript",
+          "sizeLines": 2172,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/extract-structure-result.mjs",
+          "language": "javascript",
+          "sizeLines": 358,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/extract-structure.mjs",
+          "language": "javascript",
+          "sizeLines": 170,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/finalize-incremental.mjs",
+          "language": "javascript",
+          "sizeLines": 507,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/generate-ignore.mjs",
+          "language": "javascript",
+          "sizeLines": 69,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/merge-batch-graphs.py",
+          "language": "python",
+          "sizeLines": 1296,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/merge-subdomain-graphs.py",
+          "language": "python",
+          "sizeLines": 404,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/prepare-incremental.mjs",
+          "language": "javascript",
+          "sizeLines": 719,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agents/skills/understand/scan-project.mjs",
+          "language": "javascript",
+          "sizeLines": 918,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".agents/skills/understand-chat/SKILL.md": [],
+        ".agents/skills/understand-dashboard/SKILL.md": [],
+        ".agents/skills/understand-diff/SKILL.md": [],
+        ".agents/skills/understand-domain/SKILL.md": [],
+        ".agents/skills/understand-domain/extract-domain-context.py": [],
+        ".agents/skills/understand-explain/SKILL.md": [],
+        ".agents/skills/understand-figma/SKILL.md": [],
+        ".agents/skills/understand-figma/figma-merge.mjs": [],
+        ".agents/skills/understand-figma/figma-scan.mjs": [],
+        ".agents/skills/understand-knowledge/SKILL.md": [],
+        ".agents/skills/understand-knowledge/merge-knowledge-graph.py": [],
+        ".agents/skills/understand-knowledge/parse-knowledge-base.py": [],
+        ".agents/skills/understand-onboard/SKILL.md": [],
+        ".agents/skills/understand/SKILL.md": [],
+        ".agents/skills/understand/build-fingerprints.mjs": [],
+        ".agents/skills/understand/compute-batches.mjs": [],
+        ".agents/skills/understand/extract-import-map.mjs": [],
+        ".agents/skills/understand/extract-structure-result.mjs": [],
+        ".agents/skills/understand/extract-structure.mjs": [],
+        ".agents/skills/understand/finalize-incremental.mjs": [],
+        ".agents/skills/understand/generate-ignore.mjs": [],
+        ".agents/skills/understand/merge-batch-graphs.py": [],
+        ".agents/skills/understand/merge-subdomain-graphs.py": [],
+        ".agents/skills/understand/prepare-incremental.mjs": [],
+        ".agents/skills/understand/scan-project.mjs": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": "api/contact.js",
+          "language": "javascript",
+          "sizeLines": 108,
+          "fileCategory": "code"
+        },
+        {
+          "path": "eslint.config.js",
+          "language": "javascript",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "plans/lanyard-integration.md",
+          "language": "markdown",
+          "sizeLines": 55,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "src/App.jsx",
+          "language": "javascript",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/assets/lanyard/card.glb",
+          "language": "glb",
+          "sizeLines": 5565,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleArchitecture.jsx",
+          "language": "javascript",
+          "sizeLines": 128,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleAtmosphere.jsx",
+          "language": "javascript",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleForeground.jsx",
+          "language": "javascript",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleLighting.jsx",
+          "language": "javascript",
+          "sizeLines": 25,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleNightBackground.jsx",
+          "language": "javascript",
+          "sizeLines": 132,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleNightEnvironment.jsx",
+          "language": "javascript",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleSky.jsx",
+          "language": "javascript",
+          "sizeLines": 78,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/TempleTerrain.jsx",
+          "language": "javascript",
+          "sizeLines": 72,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/scene/temple-night.css",
+          "language": "css",
+          "sizeLines": 35,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "src/components/scene/templeNightRenderer.js",
+          "language": "javascript",
+          "sizeLines": 2204,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/About.jsx",
+          "language": "javascript",
+          "sizeLines": 103,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/Certifications.jsx",
+          "language": "javascript",
+          "sizeLines": 61,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/Contact.jsx",
+          "language": "javascript",
+          "sizeLines": 386,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/Experience.jsx",
+          "language": "javascript",
+          "sizeLines": 138,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/Hero.jsx",
+          "language": "javascript",
+          "sizeLines": 97,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/Projects.jsx",
+          "language": "javascript",
+          "sizeLines": 296,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/sections/Skills.jsx",
+          "language": "javascript",
+          "sizeLines": 115,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/three/SceneCanvas.jsx",
+          "language": "javascript",
+          "sizeLines": 10,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/three/SceneManager.jsx",
+          "language": "javascript",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/three/SkillCell.jsx",
+          "language": "javascript",
+          "sizeLines": 50,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "api/contact.js": [],
+        "eslint.config.js": [],
+        "plans/lanyard-integration.md": [],
+        "src/App.jsx": [],
+        "src/assets/lanyard/card.glb": [],
+        "src/components/scene/TempleArchitecture.jsx": [],
+        "src/components/scene/TempleAtmosphere.jsx": [],
+        "src/components/scene/TempleForeground.jsx": [],
+        "src/components/scene/TempleLighting.jsx": [],
+        "src/components/scene/TempleNightBackground.jsx": [],
+        "src/components/scene/TempleNightEnvironment.jsx": [],
+        "src/components/scene/TempleSky.jsx": [],
+        "src/components/scene/TempleTerrain.jsx": [],
+        "src/components/scene/temple-night.css": [],
+        "src/components/scene/templeNightRenderer.js": [],
+        "src/components/sections/About.jsx": [],
+        "src/components/sections/Certifications.jsx": [],
+        "src/components/sections/Contact.jsx": [],
+        "src/components/sections/Experience.jsx": [],
+        "src/components/sections/Hero.jsx": [],
+        "src/components/sections/Projects.jsx": [],
+        "src/components/sections/Skills.jsx": [],
+        "src/components/three/SceneCanvas.jsx": [],
+        "src/components/three/SceneManager.jsx": [],
+        "src/components/three/SkillCell.jsx": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "src/components/ui/CertificationSlider.jsx",
+          "language": "javascript",
+          "sizeLines": 284,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/FloatingNav.jsx",
+          "language": "javascript",
+          "sizeLines": 147,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/Footer.jsx",
+          "language": "javascript",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/Loader.jsx",
+          "language": "javascript",
+          "sizeLines": 165,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/MorphSlider.jsx",
+          "language": "javascript",
+          "sizeLines": 691,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/Navbar.jsx",
+          "language": "javascript",
+          "sizeLines": 142,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/ProfileCard.jsx",
+          "language": "javascript",
+          "sizeLines": 619,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/ProfileLogo.jsx",
+          "language": "javascript",
+          "sizeLines": 42,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/StaggeredMenu.jsx",
+          "language": "javascript",
+          "sizeLines": 408,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/TransitionOverlay.jsx",
+          "language": "javascript",
+          "sizeLines": 684,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui/hamburger-nav.jsx",
+          "language": "javascript",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/constants/colors.js",
+          "language": "javascript",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/constants/nav.js",
+          "language": "javascript",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/constants/scene.js",
+          "language": "javascript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/certifications.js",
+          "language": "javascript",
+          "sizeLines": 99,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/content.js",
+          "language": "javascript",
+          "sizeLines": 106,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/hooks/useMousePosition.js",
+          "language": "javascript",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/hooks/useReducedMotion.js",
+          "language": "javascript",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/hooks/useScrollProgress.js",
+          "language": "javascript",
+          "sizeLines": 31,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/hooks/useSectionBackground.js",
+          "language": "javascript",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/index.css",
+          "language": "css",
+          "sizeLines": 105,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "src/main.jsx",
+          "language": "javascript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/utils/navigation.js",
+          "language": "javascript",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/utils/random.js",
+          "language": "javascript",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "vite.config.js",
+          "language": "javascript",
+          "sizeLines": 70,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/components/ui/CertificationSlider.jsx": [],
+        "src/components/ui/FloatingNav.jsx": [],
+        "src/components/ui/Footer.jsx": [],
+        "src/components/ui/Loader.jsx": [],
+        "src/components/ui/MorphSlider.jsx": [],
+        "src/components/ui/Navbar.jsx": [],
+        "src/components/ui/ProfileCard.jsx": [],
+        "src/components/ui/ProfileLogo.jsx": [],
+        "src/components/ui/StaggeredMenu.jsx": [],
+        "src/components/ui/TransitionOverlay.jsx": [],
+        "src/components/ui/hamburger-nav.jsx": [],
+        "src/constants/colors.js": [],
+        "src/constants/nav.js": [],
+        "src/constants/scene.js": [],
+        "src/data/certifications.js": [],
+        "src/data/content.js": [],
+        "src/hooks/useMousePosition.js": [],
+        "src/hooks/useReducedMotion.js": [],
+        "src/hooks/useScrollProgress.js": [],
+        "src/hooks/useSectionBackground.js": [],
+        "src/index.css": [],
+        "src/main.jsx": [],
+        "src/utils/navigation.js": [],
+        "src/utils/random.js": [],
+        "vite.config.js": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}

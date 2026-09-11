@@ -7,6 +7,7 @@
 [![GSAP 3](https://img.shields.io/badge/GSAP-3.15-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://gsap.com/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind-4.3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Resend API](https://img.shields.io/badge/Resend-Serverless-black?style=for-the-badge&logo=resend&logoColor=white)](https://resend.com)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge)](LICENSE)
 
 A visually-rich, interactive 3D developer portfolio built with **React 19**, **Vite 8**, **Three.js** (via `@react-three/fiber`), **GSAP 3**, and **Tailwind CSS 4**. The application seamlessly combines parallax 3D WebGL scenes, interactive physics profile cards, an industry certifications showcase slider, a serverless email delivery system via **Resend**, dynamic section color-tweening, and a staggered GSAP entry curtain.
 
@@ -55,6 +56,7 @@ A visually-rich, interactive 3D developer portfolio built with **React 19**, **V
 - [Data Model](#-data-model)
 - [Accessibility](#-accessibility)
 - [Dependencies](#-dependencies)
+- [License](#-license)
 
 ---
 
@@ -395,6 +397,12 @@ export const certifications = [
 | `framer-motion` | `^12.40.0` | Hamburger menu staggered animations |
 | `resend` | `^6.9.3` | Serverless email delivery SDK |
 | `tailwindcss` | `^4.3.1` | Utility CSS engine |
+
+---
+
+## 📄 License
+
+This repository is licensed under the [Apache License, Version 2.0](LICENSE). You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ---
 
