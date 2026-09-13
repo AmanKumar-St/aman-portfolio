@@ -1,6 +1,6 @@
 # 🌌 Aman Kumar — Interactive 3D Portfolio
 
-[![Live Demo](https://img.shields.io/badge/LIVE%20DEMO-aman--portfolio.vercel.app-00A19B?style=for-the-badge&logo=vercel&logoColor=white)](https://aman-portfolio.vercel.app)
+[![Live Demo](https://aman-portfolio-lime.vercel.app)
 [![React 19](https://img.shields.io/badge/React-19.2.6-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Vite 8](https://img.shields.io/badge/Vite-8.0.12-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-0.184-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
@@ -15,7 +15,7 @@ A visually-rich, interactive 3D developer portfolio built with **React 19**, **V
 
 ## 🎬 Project Demo
 
-> **Live Deployment:** [https://aman-portfolio.vercel.app](https://aman-portfolio.vercel.app)
+> **Live Deployment:** [https://aman-portfolio-lime.vercel.app](https://aman-portfolio-lime.vercel.app/)
 
 ![Aman Kumar Portfolio Demo](./public/portfolio-demo.png)
 
